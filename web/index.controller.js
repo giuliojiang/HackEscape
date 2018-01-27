@@ -58,7 +58,11 @@ mainApp.controller("main_controller", function($scope) {
 
     // Level 1 - Intro text and narration -------------------------------------
 
-    $scope.intro_text = "";
+    $scope.narration = {
+        intro: "",
+        bookshelf: ""
+    };
+
     $scope.intro_text_set = [
         {
             txt: "Of a secret a legend is about",
@@ -78,13 +82,13 @@ mainApp.controller("main_controller", function($scope) {
         }
     ];
 
-    $scope.play_voice_sequence = function(data_list, on_finish) {
+    $scope.play_voice_sequence = function(data_list, text_location, on_finish) {
         var vs_func = function(idx) {
             if (idx >= data_list.length) {
                 on_finish();
                 return;
             }
-            $scope.intro_text = data_list[idx].txt;
+            $scope.narration[text_location] = data_list[idx].txt;
             $scope.playSound(data_list[idx].audio, function() {
                 console.info("Audio ended " + data_list[idx].audio);
                 setTimeout(function() {
@@ -98,7 +102,8 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.intro_start_slideshow = function() {
         console.info("Starting intro slideshow");
-        $scope.play_voice_sequence($scope.intro_text_set, function() {
+        //                         dataset               $scope.narration.?  onend
+        $scope.play_voice_sequence($scope.intro_text_set, "intro", function() {
             $scope.current_level_set('bookshelf', 'fade');
             $scope.$apply();
         });
