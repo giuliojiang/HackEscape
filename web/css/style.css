@@ -18,19 +18,37 @@
 }
 
 body {
+    font-family: 'main';
     border: 0;
     background-color: black;
+    color: white;
 }
 .menu_container {
     position: absolute;
-    top: 200px;
+    top: 300px;
+    width: 300px;
     right: 200px;
+}
+
+.menu_container div {
+    margin: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.title {
+    width: 400px;
+    position: absolute;
+    font-size: 80px;
+    top: 100px;
+    right: 100px;
+    text-align: center; 
 }
 
 .container {
     margin: auto;
     width: 1300px;
-    background-color: yellow;
+    background-color: #222;
     position: relative;
     height: 740px;
 }
