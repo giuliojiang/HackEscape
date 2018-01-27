@@ -2,6 +2,11 @@ var mainApp = angular.module("mainApp", []);
 
 mainApp.controller("main_controller", function($scope) {
 
+    // Flicker
+    setInterval(function(){
+        $(".flicker").css('opacity', Math.random() * 2);
+    }, 200);
+
     // Current level being shown ----------------------------------------------
     $scope.current_level = 'menu';
 
