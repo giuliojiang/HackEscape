@@ -22,7 +22,7 @@ mainApp.controller("main_controller", function($scope) {
         if (hash == 'level1') {
             console.info("Detected level1 auto-loading");
             $scope.current_level = hash;
-            $scope.intro_start_slideshow(0);
+            $scope.intro_start_slideshow();
         } else {
             $scope.current_level_set(hash);
         }
@@ -38,7 +38,8 @@ mainApp.controller("main_controller", function($scope) {
         $scope.current_level = new_level;
 
         if (new_level == 'level1') {
-            $scope.intro_start_slideshow(0);
+            $scope.playMusic("audio/intro_wind.ogg");
+            $scope.intro_start_slideshow();
         } else if (new_level == 'bookshelf') {
             setTimeout(() => jQuery( ".bookshelf_book" ).animate({
                             opacity: 1,
@@ -77,21 +78,29 @@ mainApp.controller("main_controller", function($scope) {
         }
     ];
 
-    $scope.intro_start_slideshow = function(idx) {
-        if (idx >= $scope.intro_text_set.length) {
+    $scope.play_voice_sequence = function(data_list, on_finish) {
+        var vs_func = function(idx) {
+            if (idx >= data_list.length) {
+                on_finish();
+                return;
+            }
+            $scope.intro_text = data_list[idx].txt;
+            $scope.playSound(data_list[idx].audio, function() {
+                console.info("Audio ended " + data_list[idx].audio);
+                setTimeout(function() {
+                    vs_func(idx + 1);
+                    $scope.$apply();
+                }, 10);
+            });
+        };
+        vs_func(0);
+    };
+
+    $scope.intro_start_slideshow = function() {
+        console.info("Starting intro slideshow");
+        $scope.play_voice_sequence($scope.intro_text_set, function() {
             $scope.current_level_set('bookshelf', 'fade');
-            return;
-        }
-        if (idx == 0) {
-            $scope.playMusic("audio/intro_wind.ogg");
-        }
-        $scope.intro_text = $scope.intro_text_set[idx].txt;
-        $scope.playSound($scope.intro_text_set[idx].audio, function() {
-            console.info("Audio ended " + $scope.intro_text_set[idx].audio);
-            setTimeout(function() {
-                $scope.intro_start_slideshow(idx + 1);
-                $scope.$apply();
-            }, 10);
+            $scope.$apply();
         });
     };
 
