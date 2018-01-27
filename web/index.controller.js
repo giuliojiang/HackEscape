@@ -55,6 +55,9 @@ mainApp.controller("main_controller", function($scope) {
             $scope.$apply();
         }, 1800)
 
+        // Play sliding sound
+        $scope.playSound("audio/book_sliding.ogg");
+
         // Add book to player's inventory
         $scope.inventory_add_item("book");
     };
@@ -259,8 +262,11 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.inventory_get_class = function(item_name) {
         if ($scope.inventory[item_name]) {
-            // Item present
-            return "inventory_item_present";
+            var cls = "inventory_item_present";
+            if ($scope.inventory_extra.selected == item_name) {
+                cls += " inventory_item_highlight";
+            }
+            return cls;
         } else {
             // Item not present
             return "inventory_item_missing";
