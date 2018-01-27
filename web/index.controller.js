@@ -275,6 +275,15 @@ mainApp.controller("main_controller", function($scope) {
         $scope.inventory[item_name] = false;
     };
 
+    $scope.inventory_empty = function() {
+        for (var i = 0; i < $scope.inventory_list.length; i++) {
+            if ($scope.inventory[$scope.inventory_list[i]]) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     // Outside ----------------------------------------------------------------
 
     $scope.outside_door_click_playing = false;
