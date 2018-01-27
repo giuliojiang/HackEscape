@@ -15,18 +15,9 @@
         <!-- Controller -->
         <script src="index.controller.js"></script>
         <script src="header.controller.js"></script>
-        <script src="level1.controller.js"></script>
     </head>
     <body ng-app="mainApp" ng-controller="main_controller">
-        <div class="container-fluid">
-            <div class="row">
-                <!--Include file header.html-->
-                <div ng-include="'header.html'"></div>
-            </div>
-            <div class="row">
-                <!--Include file level1.html-->
-                <div ng-include="'level1.html'"></div>
-            </div>
-        </div>
+        <div ng-include="'intro.html'" ng-show="current_level == 'intro'"></div>
+        <div ng-include="'level1.html'" ng-show="current_level == 'level1'"></div>
     </body>
 </html>
