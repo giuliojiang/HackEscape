@@ -184,6 +184,10 @@ mainApp.controller("main_controller", function($scope) {
         });
     };
 
+    $scope.bookshelf_open_click_tower = function() {
+        $scope.current_level_set("outside", "fade");
+    };
+
     // Initialization calls ---------------------------------------------------
 
     get_window_hash();
