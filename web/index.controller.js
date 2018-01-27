@@ -1,4 +1,4 @@
-var mainApp = angular.module("mainApp", []);
+var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
 
 mainApp.controller("main_controller", function($scope) {
 

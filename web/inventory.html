@@ -1,4 +1,4 @@
 <div class="inventory">
-    <p>Inventory</p>
-    <p ng-repeat="a_item in inventory_list" class="{{inventory_get_class(a_item)}}" ng-click="inventory_item_click(a_item)">{{a_item}}</p>
+    <p>Your Inventory</p>
+    <div ng-repeat="a_item in inventory_list" class="{{inventory_get_class(a_item)}} inventory_item" ng-click="inventory_item_click(a_item)" title="{{a_item}}" tooltips tooltip-template="{{a_item}}">{{a_item}}</div>
 </div>

@@ -178,10 +178,16 @@ body {
 
 .inventory {
     position: absolute;
-    left: 400px;
-    top: 400px;
+    bottom: 0;
+    left: 0;
 }
 
+.inventory_item {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid white;
+}
 .inventory_item_present {
     color: green;
 }
