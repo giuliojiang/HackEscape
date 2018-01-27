@@ -25,10 +25,16 @@ body {
 }
 .menu_btn {
     position: absolute;
-    bottom: 10px;
-    font-size: 30px;
-    width: 200px;
+    bottom: 45px;
+    font-size: 40px;
+    width: 300px;
     text-align: center;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.menu_btn:hover {
+    font-size: 45px;
+    opacity: 1;
 }
 .menu_options {
     left: 35px;
@@ -37,7 +43,7 @@ body {
     right: 35px;
 }
 .menu_play {
-    left: 500px;
+    left: 490px;
 }
 
 .menu_container div {
@@ -57,11 +63,30 @@ body {
     padding-top: 200px;
     text-align: center; 
 }
+.flicker {
+  transition: all 0.5s ease;
+}
+.flicker_black {
+    width: 1920%;
+    height: 740px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.menu_bg {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+}
 
 .container {
+    z-index: 0;
     margin: auto;
     width: 1300px;
-    background-color: #222;
+    /*background-color: black;*/
     position: relative;
     height: 740px;
 }
@@ -71,4 +96,41 @@ body {
     font-size: 80px;
     top: 300px;
     left: 500px;
+}
+
+/* Helper CSS methods */
+.size {
+    width: 1300px;
+    height: 740px;
+}
+.bg {
+    position: absolute;
+    z-index: -1000;
+    width: 1300px;
+    height: 740px;
+}
+.top {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1000;
+    width: 1300px;
+    height: 740px;
+}
+.mid {
+
+    z-index: 500;
+    position: absolute;
+    width: 1300px;
+    height: 740px;
+}
+.obj {
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 800;
+}
+/* Bookshelf Stuff */
+.bookshelf {
+
 }
