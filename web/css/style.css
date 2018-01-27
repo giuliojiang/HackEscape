@@ -1,8 +1,9 @@
-.black_front {
+#black {
     background-color: black;
     z-index: 10000;
     position: fixed;
     height: 1920px;
+    display: none;
     width: 100%;
 }
 

@@ -17,6 +17,7 @@
         <script src="header.controller.js"></script>
     </head>
     <body ng-app="mainApp" ng-controller="main_controller">
+        <div id='black'></div>
         <div ng-include="'intro.html'" ng-show="current_level == 'intro'"></div>
         <div ng-include="'level1.html'" ng-show="current_level == 'level1'"></div>
     </body>
