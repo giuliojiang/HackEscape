@@ -76,7 +76,8 @@ mainApp.controller("main_controller", function($scope) {
     $scope.narration = {
         intro: "",
         bookshelf: "",
-        outside_door: ""
+        outside_door: "",
+        lion: ""
     };
 
     $scope.intro_text_set = [
@@ -172,6 +173,10 @@ mainApp.controller("main_controller", function($scope) {
         $scope.music_track.src = srcPath;
         document.body.appendChild($scope.music_track);
         $scope.music_track.volume = 0;
+        // Repetition play
+        $scope.music_track.onended = function() {
+            $scope.music_track.play();
+        };
         $scope.music_track.play();
         $($scope.music_track).animate({volume: 1}, 500, function() {
         });
@@ -234,6 +239,38 @@ mainApp.controller("main_controller", function($scope) {
                 $scope.outside_door_click_playing = false;
             });
         }
+    };
+
+    $scope.outside_lion_click = function() {
+        $scope.current_level_set("lion", "fade");
+    };
+
+    // Lion -------------------------------------------------------------------
+
+    $scope.lion_voice_playing = false;
+
+    $scope.play_lion_voice = function() {
+        if ($scope.lion_voice_playing) {
+            console.info("Already playing");
+            return;
+        }
+        $scope.lion_voice_playing = true;
+        $scope.play_voice_sequence([
+            {
+                txt: "Something is missing here",
+                audio: "audio/lion_01.ogg"
+            }
+        ], "lion", function() {
+            $scope.lion_voice_playing = false;
+        });
+    };
+
+    $scope.lion_click = function() {
+        $scope.play_lion_voice();
+    };
+
+    $scope.lion_back = function() {
+        $scope.current_level_set("outside", "fade");
     };
 
     // Initialization calls ---------------------------------------------------
