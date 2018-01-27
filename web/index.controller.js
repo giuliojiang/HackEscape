@@ -40,9 +40,10 @@ mainApp.controller("main_controller", function($scope) {
         if (new_level == 'level1') {
             $scope.intro_start_slideshow(0);
         } else if (new_level == 'bookshelf') {
-            setTimeout(function() {
-                $( ".bookshelf_book" ).css('margin-left', '-500px');
-            }, 100);
+                setTimeout(() => jQuery( ".bookshelf_book" ).animate({
+                                opacity: 1,
+                                marginLeft: "-=120"
+                                }, 1500), 200);
             
         }
     };
@@ -51,22 +52,9 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.intro_text = "";
     $scope.intro_text_set = [
-        {
-            txt: "Of a secret a legend is about",
-            audio: "audio/intro01.ogg"
-        },
-        {
-            txt: "It is said to be written in a book",
-            audio: "audio/intro02.ogg"
-        },
-        {
-            txt: "Over the years I searched in the library",
-            audio: "audio/intro03.ogg"
-        },
-        {
-            txt: "Until I found this...",
-            audio: "audio/intro04.ogg"
-        }
+        "Welcome",
+        "This is not a game",
+        "This is real"
     ];
 
     $scope.intro_start_slideshow = function(idx) {
@@ -74,54 +62,11 @@ mainApp.controller("main_controller", function($scope) {
             $scope.current_level_set('level2', 'fade');
             return;
         }
-        $scope.intro_text = $scope.intro_text_set[idx].txt;
-        $scope.playSound($scope.intro_text_set[idx].audio, function() {
-            console.info("Audio ended " + $scope.intro_text_set[idx].audio);
-            setTimeout(function() {
-                $scope.intro_start_slideshow(idx + 1);
-                $scope.$apply();
-            }, 10);
-        });
-    };
-
-    // Sound playback functions -----------------------------------------------
-
-    $scope.sound_last_index = 0;
-    $scope.playSound = function(srcPath, onEnd) {
-        console.info("Start playing " + srcPath);
-        var audio_element = document.createElement("audio");
-        var element_id = "sound_element_" + $scope.sound_last_index;
-        $scope.sound_last_index += 1;
-        // Set the element's id
-        audio_element.id = element_id;
-        audio_element.autostart = "0";
-        // Source
-        audio_element.src = srcPath;
-        // Add to page
-        document.body.appendChild(audio_element);
-        // OnEnded listener
-        audio_element.onended = function() {
-            onEnd();
-            audio_element.pause();
-            audio_element.remove();
-        };
-        // Start playing
-        audio_element.play();
-    };
-
-    $scope.music_track = null;
-    $scope.playMusic = function(srcPath) {
-        // Stop current playing music
-        if ($scope.music_track) {
-            $scope.music_track.pause();
-            $scope.music_track.remove();
-        }
-        $scope.music_track = document.createElement("audio");
-        $scope.music_track.id = "music_element";
-        $scope.music_track.autostart = "0";
-        $scope.music_track.src = srcPath;
-        document.body.appendChild($scope.music_track);
-        $scope.music_track.play();
+        $scope.intro_text = $scope.intro_text_set[idx];
+        setTimeout(function() {
+            $scope.intro_start_slideshow(idx + 1);
+            $scope.$apply();
+        }, 3000);
     };
 
     // Initialization calls ---------------------------------------------------
