@@ -1,0 +1,18 @@
+<div>
+
+    <img class="bg" src="img/entrance_bg.png" />
+    <!--TODO - This scene needs as background the outdoors scene at night-->
+
+    <!--TODO replace this with the clickable door-->
+    <!-- <p ng-click="outside_door_click()">Door</p> -->
+
+    <img id="entrance_door" class="obj" src="{{imgsrc7}}" ng-init="imgsrc7='img/entrance_door_blank.png'" ng-mouseover="imgsrc7='img/entrance_door.png'" ng-mouseout="imgsrc7='img/entrance_door_blank.png'" style="z-index: 1200" ng-click="open_entrance()" ng-hide="entrance_opened" />
+    <img id="left_door" class="obj" src="img/left_door.png" />
+    <img id="right_door" class="obj" src="img/right_door.png" />
+    
+    <!--subtitles-->
+    <p>{{narration.outside_door}}</p>
+
+
+
+</div>

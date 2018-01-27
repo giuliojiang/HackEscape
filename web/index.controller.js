@@ -4,7 +4,7 @@ mainApp.controller("main_controller", function($scope) {
 
     // Flicker
     setInterval(function(){
-        $(".flicker").css('opacity', Math.random() * 2);
+        $(".flicker").css('opacity', Math.random() * 3);
     }, 200);
 
     $scope.hoverIn = function(){
@@ -328,6 +328,23 @@ mainApp.controller("main_controller", function($scope) {
         }
     };
 
+    $scope.entrance_opened = false;
+    $scope.open_entrance = function() {
+        if ($scope.entrance_opened) return; // Already opened so dont reopen
+        $scope.entrance_opened = true;
+        setTimeout(() => $( "#left_door" ).animate({
+                opacity: 1,
+                width: "0px",
+                height: "437px"
+                }, 1500), 200);
+        setTimeout(() => $( "#right_door" ).animate({
+                opacity: 1,
+                width: "0px",
+                height: "437px",
+                marginLeft: "130px"
+                }, 1500), 200);
+    };
+
     $scope.outside_lion_click = function() {
         $scope.current_level_set("lion", "fade");
     };
@@ -362,6 +379,10 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
 
+            setTimeout(() => jQuery( "#lion_book" ).animate({
+                        opacity: 1,
+                        marginLeft: "+=70"
+                        }, 1500), 200);
         if ($scope.inventory_extra.selected == "book") {
             $scope.lion_status.active = true;
             $scope.inventory_remove_item("book");

@@ -209,3 +209,23 @@ body {
 .inventory_item_highlight {
     border: 1px solid white;
 }
+
+#lion_book {
+    left: 312px;
+    top: 477px;
+}
+
+
+#entrance_door {
+    left: 490px;
+    top: 289px;
+    z-index: 805;
+}
+#left_door {
+    left: 490px;
+    top: 289px;
+}
+#right_door {
+    left: 620px;
+    top: 289px;
+}
