@@ -19,16 +19,18 @@
 
     </head>
     <body ng-app="mainApp" ng-controller="main_controller">
-        <div id='black'></div>
-        <div class="container" ng-include="'menu.html'" ng-show="current_level == 'menu'"></div>
-        <div class="container" ng-include="'bookshelf.html'" ng-show="current_level == 'bookshelf'"></div>
-        <div class="container" ng-include="'bookshelf_open.html'" ng-show="current_level == 'bookshelf_open'"></div>
-        <div class="container" ng-include="'level1.html'" ng-show="current_level == 'level1'"></div>
-        <div class="container" ng-include="'level2.html'" ng-show="current_level == 'level2'"></div>
-        <div class="container" ng-include="'outside.html'" ng-show="current_level == 'outside'"></div>
-        <div class="container" ng-include="'lion.html'" ng-show="current_level == 'lion'"></div>
+        <div id="most_outer_container">
+            <div id='black'></div>
+            <div class="container" ng-include="'menu.html'" ng-show="current_level == 'menu'"></div>
+            <div class="container" ng-include="'bookshelf.html'" ng-show="current_level == 'bookshelf'"></div>
+            <div class="container" ng-include="'bookshelf_open.html'" ng-show="current_level == 'bookshelf_open'"></div>
+            <div class="container" ng-include="'level1.html'" ng-show="current_level == 'level1'"></div>
+            <div class="container" ng-include="'level2.html'" ng-show="current_level == 'level2'"></div>
+            <div class="container" ng-include="'outside.html'" ng-show="current_level == 'outside'"></div>
+            <div class="container" ng-include="'lion.html'" ng-show="current_level == 'lion'"></div>
 
-        <!--Inventory-->
-        <div ng-include="'inventory.html'" ng-show="inventory_is_visible()"></div>
+            <!--Inventory-->
+            <div ng-include="'inventory.html'" ng-show="inventory_is_visible()"></div>
+        </div>
     </body>
 </html>
