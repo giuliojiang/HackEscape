@@ -44,6 +44,11 @@ mainApp.controller("main_controller", function($scope) {
                             opacity: 1,
                             marginLeft: "-=120"
                             }, 1500), 200);
+            setTimeout(() => {
+                console.info("switching to menu");
+                $scope.current_level_set("bookshelf_open", "fade");
+                $scope.$apply();
+            }, 1800)
             
         }
     };

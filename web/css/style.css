@@ -110,18 +110,27 @@ body {
     height: 740px;
 }
 .top {
+    pointer-events: none;
     position: absolute;
     z-index: 1000;
     width: 1300px;
     height: 740px;
 }
 .mid {
+
     z-index: 500;
     position: absolute;
     width: 1300px;
     height: 740px;
 }
+.obj {
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 800;
+}
 /* Bookshelf Stuff */
 .bookshelf {
-    
+
 }
