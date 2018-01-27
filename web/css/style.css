@@ -174,3 +174,17 @@ body {
 #lion_btm_white:hover {
     opacity: 0.3;
 }
+
+.inventory {
+    position: absolute;
+    left: 400px;
+    top: 400px;
+}
+
+.inventory_item_present {
+    color: green;
+}
+
+.inventory_item_missing {
+    color: red;
+}

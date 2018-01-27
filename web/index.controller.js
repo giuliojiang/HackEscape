@@ -223,8 +223,38 @@ mainApp.controller("main_controller", function($scope) {
 
     // Player's inventory -----------------------------------------------------
 
-    $scope.inventory = {
-        key: false
+    $scope.inventory_list = [
+        "key",
+        "book",
+        "phone"
+    ];
+
+    $scope.inventory = {};
+    for (var i = 0; i < $scope.inventory_list.length; i++) {
+        $scope.inventory[$scope.inventory_list[i]] = false;
+    }
+
+    $scope.inventory_is_visible = function() {
+        var scenes_with_inventory = {
+            "bookshelf_open": true,
+            "outside": true,
+            "lion": true
+        };
+        return !!scenes_with_inventory[$scope.current_level];
+    };
+
+    $scope.inventory_item_click = function(item_name) {
+        console.info("Player clicked on inventory item " + item_name);
+    };
+
+    $scope.inventory_get_class = function(item_name) {
+        if ($scope.inventory[item_name]) {
+            // Item present
+            return "inventory_item_present";
+        } else {
+            // Item not present
+            return "inventory_item_missing";
+        }
     };
 
     // Outside ----------------------------------------------------------------

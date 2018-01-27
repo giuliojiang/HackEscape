@@ -20,5 +20,8 @@
         <div class="container" ng-include="'level2.html'" ng-show="current_level == 'level2'"></div>
         <div class="container" ng-include="'outside.html'" ng-show="current_level == 'outside'"></div>
         <div class="container" ng-include="'lion.html'" ng-show="current_level == 'lion'"></div>
+
+        <!--Inventory-->
+        <div ng-include="'inventory.html'" ng-show="inventory_is_visible()"></div>
     </body>
 </html>
