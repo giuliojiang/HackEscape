@@ -1,6 +1,8 @@
 <div>
-    <img class="top" src="img/bookshelf_top.png" />
-    <img class="mid bookshelf_book hover_obj" src="img/bookshelf_book.png" id="bookshelf_book" ng-click="current_level_set('bookshelf_open', 'fade')" />
+    <!-- <img class="top" src="img/bookshelf_top.png" /> -->
+    <!-- <img class="bookshelf_book hover_obj" src="img/bookshelf_book.png" id="bookshelf_book"/> -->
+
+    <img class="bookshelf_book hover_obj" src="{{imgsrc}}" id="bookshelf_book" ng-init="imgsrc='img/bookshelf_book.png'" ng-mouseover="imgsrc='img/bookshelf_book_hover.png'" ng-mouseout="imgsrc='img/bookshelf_book.png'" ng-click="current_level_set('bookshelf_open', 'fade')"  />
     <!-- <img class="mid bookshelf_book no_ease" src="img/bookshelf_book_hover.png" id="bookshelf_book_open"  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" style="opacity: {{hoverEdit ? 1 : 0}}; " /> -->
     <img class="bg" src="img/bookshelf_bg.png" />
 

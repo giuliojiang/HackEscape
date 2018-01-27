@@ -15,6 +15,13 @@ mainApp.controller("main_controller", function($scope) {
         this.hoverEdit = false;
     };
 
+    // setTimeout(
+    // $(".hover_obj").mouseover(function() {
+    //     alert();
+    //     $(this).attr("src", $(this).attr("src").replace('.png', '_hover.png'));
+    // }), 200);
+
+
     // Current level being shown ----------------------------------------------
     $scope.current_level = 'menu';
 

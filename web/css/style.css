@@ -130,6 +130,9 @@ body {
     left: 0;
     z-index: 800;
 }
+.hover_obj {
+    cursor: pointer;
+}
 /* Bookshelf Stuff */
 .bookshelf {
 
@@ -141,4 +144,9 @@ body {
 
 .no_ease {
   transition: all 0s ease;
+}
+.bookshelf_book {
+    position: absolute;
+    left: 360px;
+    top: 233px;
 }
