@@ -52,3 +52,10 @@ body {
     position: relative;
     height: 740px;
 }
+
+.intro_big_text {
+    position: absolute;
+    font-size: 80px;
+    top: 300px;
+    left: 500px;
+}
