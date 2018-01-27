@@ -1,0 +1,22 @@
+{
+  "name": "hackescape",
+  "version": "0.0.1",
+  "description": "",
+  "main": "nodejsserver.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giuliojiang/HackEscape.git"
+  },
+  "author": "",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/giuliojiang/HackEscape/issues"
+  },
+  "homepage": "https://github.com/giuliojiang/HackEscape#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
