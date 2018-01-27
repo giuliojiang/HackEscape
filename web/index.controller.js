@@ -74,6 +74,9 @@ mainApp.controller("main_controller", function($scope) {
             $scope.current_level_set('level2', 'fade');
             return;
         }
+        if (idx == 0) {
+            $scope.playMusic("audio/intro_wind.ogg");
+        }
         $scope.intro_text = $scope.intro_text_set[idx].txt;
         $scope.playSound($scope.intro_text_set[idx].audio, function() {
             console.info("Audio ended " + $scope.intro_text_set[idx].audio);
@@ -113,15 +116,21 @@ mainApp.controller("main_controller", function($scope) {
     $scope.playMusic = function(srcPath) {
         // Stop current playing music
         if ($scope.music_track) {
-            $scope.music_track.pause();
-            $scope.music_track.remove();
+            // Fade out
+            $($scope.music_track).animate({volume: 0}, 1000, function() {
+                $scope.music_track.pause();
+                $scope.music_track.remove();
+            });
         }
         $scope.music_track = document.createElement("audio");
         $scope.music_track.id = "music_element";
         $scope.music_track.autostart = "0";
         $scope.music_track.src = srcPath;
         document.body.appendChild($scope.music_track);
+        $scope.music_track.volume = 0;
         $scope.music_track.play();
+        $($scope.music_track).animate({volume: 1}, 500, function() {
+        });
     };
 
     // Initialization calls ---------------------------------------------------
