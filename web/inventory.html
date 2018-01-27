@@ -1,0 +1,4 @@
+<div class="inventory">
+    <p>Inventory</p>
+    <p ng-repeat="a_item in inventory_list" class="{{inventory_get_class(a_item)}}" ng-click="inventory_item_click(a_item)">{{a_item}}</p>
+</div>
