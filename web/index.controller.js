@@ -75,7 +75,8 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.narration = {
         intro: "",
-        bookshelf: ""
+        bookshelf: "",
+        outside_door: ""
     };
 
     $scope.intro_text_set = [
@@ -189,6 +190,50 @@ mainApp.controller("main_controller", function($scope) {
         $scope.playSound("audio/book_open_tower.ogg", function() {
             $scope.bookshelf_open_tower_voice_playing = false;
         });
+    };
+
+    $scope.bookshelf_open_click_tower = function() {
+        $scope.current_level_set("outside", "fade");
+    };
+
+    // Player's inventory -----------------------------------------------------
+
+    $scope.inventory = {
+        key: false
+    };
+
+    // Outside ----------------------------------------------------------------
+
+    $scope.outside_door_click_playing = false;
+
+    $scope.outside_door_click = function() {
+        if ($scope.inventory.key) {
+            // Player has the key
+            console.info("Player has the key. Opening doors...");
+        } else {
+            // Player doesn't have the keys
+            if ($scope.outside_door_click_playing) {
+                console.info("Already playing");
+                return;
+            }
+            $scope.outside_door_click_playing = true;
+            $scope.play_voice_sequence([
+                {
+                    txt: "It's locked",
+                    audio: "audio/outside_locked_01.ogg"
+                },
+                {
+                    txt: "I need to find a key somewhere",
+                    audio: "audio/outside_locked_02.ogg"
+                },
+                {
+                    txt: "Maybe I should look around",
+                    audio: "audio/outside_locked_03.ogg"
+                }
+            ], "outside_door", function() {
+                $scope.outside_door_click_playing = false;
+            });
+        }
     };
 
     // Initialization calls ---------------------------------------------------
