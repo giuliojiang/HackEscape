@@ -50,6 +50,8 @@ mainApp.controller("main_controller", function($scope) {
                 $scope.$apply();
             }, 1800)
             
+        } else if (new_level == 'bookshelf_open') {
+            $scope.playMusic("audio/fire_ambiance.ogg");
         }
     };
 
@@ -126,7 +128,13 @@ mainApp.controller("main_controller", function($scope) {
             $($scope.music_track).animate({volume: 0}, 1000, function() {
                 $scope.music_track.pause();
                 $scope.music_track.remove();
+                $scope.music_track = null;
+                setTimeout(function() {
+                    $scope.playMusic(srcPath);
+                }, 500);
+                return;
             });
+            return;
         }
         $scope.music_track = document.createElement("audio");
         $scope.music_track.id = "music_element";
