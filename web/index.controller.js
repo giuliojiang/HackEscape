@@ -139,6 +139,21 @@ mainApp.controller("main_controller", function($scope) {
         });
     };
 
+    // Booshelf Open Voice ----------------------------------------------------
+
+    $scope.bookshelf_open_tower_voice_playing = false;
+
+    $scope.bookshelf_open_tower_voice = function() {
+        console.info("$scope.bookshelf_open_tower_voice");
+        if ($scope.bookshelf_open_tower_voice_playing) {
+            return;
+        }
+        $scope.bookshelf_open_tower_voice_playing = true;
+        $scope.playSound("audio/book_open_tower.ogg", function() {
+            $scope.bookshelf_open_tower_voice_playing = false;
+        });
+    };
+
     // Initialization calls ---------------------------------------------------
 
     get_window_hash();
