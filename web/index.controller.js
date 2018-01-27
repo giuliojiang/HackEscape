@@ -44,6 +44,18 @@ mainApp.controller("main_controller", function($scope) {
 
     };
 
+    $scope.book_from_shelf = () => {
+        setTimeout(() => jQuery( ".bookshelf_book" ).animate({
+                        opacity: 1,
+                        marginLeft: "-=120"
+                        }, 1500), 200);
+        setTimeout(() => {
+            console.info("switching to menu");
+            $scope.current_level_set("bookshelf_open", "fade");
+            $scope.$apply();
+        }, 1800)
+    };
+
     $scope.current_level_set = function(new_level, transition_type) {
         console.log("Scene change to: " + new_level)
         if (transition_type == 'fade') {
@@ -55,17 +67,6 @@ mainApp.controller("main_controller", function($scope) {
         if (new_level == 'level1') {
             $scope.playMusic("audio/intro_wind.ogg");
             $scope.intro_start_slideshow();
-        } else if (new_level == 'bookshelf') {
-            setTimeout(() => jQuery( ".bookshelf_book" ).animate({
-                            opacity: 1,
-                            marginLeft: "-=120"
-                            }, 1500), 200);
-            setTimeout(() => {
-                console.info("switching to menu");
-                // $scope.current_level_set("bookshelf_open", "fade");
-                // $scope.$apply();
-            }, 1800)
-            
         } else if (new_level == 'bookshelf_open') {
             $scope.playMusic("audio/fire_ambiance.ogg");
         } else if (new_level == "outside") {
