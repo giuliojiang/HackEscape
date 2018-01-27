@@ -54,6 +54,9 @@ mainApp.controller("main_controller", function($scope) {
             $scope.current_level_set("bookshelf_open", "fade");
             $scope.$apply();
         }, 1800)
+
+        // Add book to player's inventory
+        $scope.inventory_add_item("book");
     };
 
     $scope.current_level_set = function(new_level, transition_type) {
@@ -146,7 +149,9 @@ mainApp.controller("main_controller", function($scope) {
         document.body.appendChild(audio_element);
         // OnEnded listener
         audio_element.onended = function() {
-            onEnd();
+            if (onEnd) {
+                onEnd();
+            }
             audio_element.pause();
             audio_element.remove();
         };
@@ -229,6 +234,10 @@ mainApp.controller("main_controller", function($scope) {
         "phone"
     ];
 
+    $scope.inventory_extra = {
+        selected: null
+    };
+
     $scope.inventory = {};
     for (var i = 0; i < $scope.inventory_list.length; i++) {
         $scope.inventory[$scope.inventory_list[i]] = false;
@@ -245,6 +254,7 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.inventory_item_click = function(item_name) {
         console.info("Player clicked on inventory item " + item_name);
+        $scope.inventory_extra.selected = item_name;
     };
 
     $scope.inventory_get_class = function(item_name) {
@@ -255,6 +265,14 @@ mainApp.controller("main_controller", function($scope) {
             // Item not present
             return "inventory_item_missing";
         }
+    };
+
+    $scope.inventory_add_item = function(item_name) {
+        $scope.inventory[item_name] = true;
+    };
+
+    $scope.inventory_remove_item = function(item_name) {
+        $scope.inventory[item_name] = false;
     };
 
     // Outside ----------------------------------------------------------------
@@ -297,6 +315,10 @@ mainApp.controller("main_controller", function($scope) {
 
     // Lion -------------------------------------------------------------------
 
+    $scope.lion_status = {
+        active: false
+    };
+
     $scope.lion_voice_playing = false;
 
     $scope.play_lion_voice = function() {
@@ -316,7 +338,18 @@ mainApp.controller("main_controller", function($scope) {
     };
 
     $scope.lion_click = function() {
-        $scope.play_lion_voice();
+        if ($scope.lion_status.active) {
+            console.info("Lion is already active");
+            return;
+        }
+
+        if ($scope.inventory_extra.selected == "book") {
+            $scope.lion_status.active = true;
+            $scope.inventory_remove_item("book");
+            $scope.playSound("audio/book_sliding.ogg");
+        } else {
+            $scope.play_lion_voice();
+        }
     };
 
     $scope.lion_back = function() {
