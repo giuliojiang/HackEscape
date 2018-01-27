@@ -28,6 +28,9 @@ mainApp.controller("main_controller", function($scope) {
             $("#black").fadeOut();
         }
         $scope.current_level = new_level;
+        if (new_level == 'level1') {
+            $scope.intro_start_slideshow(0);
+        }
     };
 
     // Level 1 - Intro text and narration -------------------------------------
@@ -41,6 +44,7 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.intro_start_slideshow = function(idx) {
         if (idx >= $scope.intro_text_set.length) {
+            $scope.current_level_set('level2', 'fade');
             return;
         }
         $scope.intro_text = $scope.intro_text_set[idx];
