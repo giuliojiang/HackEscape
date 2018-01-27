@@ -134,3 +134,11 @@ body {
 .bookshelf {
 
 }
+.bookshelf_book_hover, .hover_obj {
+    z-index: 505;
+    /*display: none;*/
+}
+
+.no_ease {
+  transition: all 0s ease;
+}

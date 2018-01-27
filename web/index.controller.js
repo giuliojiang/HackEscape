@@ -7,6 +7,14 @@ mainApp.controller("main_controller", function($scope) {
         $(".flicker").css('opacity', Math.random() * 2);
     }, 200);
 
+    $scope.hoverIn = function(){
+        this.hoverEdit = true;
+    };
+
+    $scope.hoverOut = function(){
+        this.hoverEdit = false;
+    };
+
     // Current level being shown ----------------------------------------------
     $scope.current_level = 'menu';
 
@@ -47,8 +55,8 @@ mainApp.controller("main_controller", function($scope) {
                             }, 1500), 200);
             setTimeout(() => {
                 console.info("switching to menu");
-                $scope.current_level_set("bookshelf_open", "fade");
-                $scope.$apply();
+                // $scope.current_level_set("bookshelf_open", "fade");
+                // $scope.$apply();
             }, 1800)
             
         } else if (new_level == 'bookshelf_open') {
