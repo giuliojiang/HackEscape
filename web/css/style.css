@@ -153,3 +153,17 @@ body {
     top: 176px;
     left: 916px;
 }
+#lion_white {
+    top: 565px;
+    left: 300px;
+}
+#lion_white:hover {
+    opacity: 0.3;
+}
+#door_white {
+    left: 714px;
+    top: 407px;
+}
+#door_white:hover {
+    opacity: 0.3;
+}
