@@ -40,9 +40,10 @@ mainApp.controller("main_controller", function($scope) {
         if (new_level == 'level1') {
             $scope.intro_start_slideshow(0);
         } else if (new_level == 'bookshelf') {
-            setTimeout(function() {
-                $( ".bookshelf_book" ).css('margin-left', '-500px');
-            }, 100);
+                setTimeout(() => jQuery( ".bookshelf_book" ).animate({
+                                opacity: 1,
+                                marginLeft: "-=120"
+                                }, 1500), 200);
             
         }
     };
