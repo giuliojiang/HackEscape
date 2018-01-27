@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- Angular -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+        <!-- Controller -->
+        <script>
+            angular.module("mainApp", []).controller("main_controller", function($scope) {
+                $scope.s = function(m) {$scope.m=m};
+            });
+        </script>
+    </head>
+    <body ng-app="mainApp" ng-controller="main_controller">
+        <div class="container-fluid">
+            <div class="row" ng-repeat="n in [1,2,3,4,5,6,7,8,9,10] track by $index">
+                <button ng-if="n == 7" ng-click="s('right')">Click me</button>
+                <button ng-if="n != 7" ng-click="s('wrong')">Click me</button>
+            </div>
+            <div class="row"><p>{{m}}</p></div>
+        </div>
+    </body>
+</html>

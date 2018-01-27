@@ -1,0 +1,10 @@
+<div ng-controller="level1">
+    <div class="container-fluid">
+        <div class="row" ng-repeat="a_choice in choices">
+            <a class="btn btn-default" href="#" role="button" ng-click="test_choice(a_choice);">Am I the right one?</a>
+        </div>
+        <div class="row">
+            <p>{{out_message}}</p>
+        </div>
+    </div>
+</div>
