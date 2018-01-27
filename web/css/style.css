@@ -23,25 +23,38 @@ body {
     background-color: black;
     color: white;
 }
-.menu_container {
+.menu_btn {
     position: absolute;
-    top: 300px;
-    width: 300px;
-    right: 200px;
+    bottom: 10px;
+    font-size: 30px;
+    width: 200px;
+    text-align: center;
+}
+.menu_options {
+    left: 35px;
+}
+.menu_about {
+    right: 35px;
+}
+.menu_play {
+    left: 500px;
 }
 
 .menu_container div {
     margin: 20px;
     text-align: center;
     width: 100%;
+    font-size: 30px;
+    cursor: pointer;
+}
+.menu_container div:hover {
+    font-size: 35px;
 }
 
 .title {
-    width: 400px;
-    position: absolute;
+    width: 100%;
     font-size: 80px;
-    top: 100px;
-    right: 100px;
+    padding-top: 200px;
     text-align: center; 
 }
 
