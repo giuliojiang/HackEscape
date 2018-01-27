@@ -72,7 +72,7 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.intro_start_slideshow = function(idx) {
         if (idx >= $scope.intro_text_set.length) {
-            $scope.current_level_set('level2', 'fade');
+            $scope.current_level_set('bookshelf', 'fade');
             return;
         }
         if (idx == 0) {
