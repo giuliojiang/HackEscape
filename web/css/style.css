@@ -1,0 +1,12 @@
+.black_front {
+    background-color: black;
+    z-index: 10000;
+    position: fixed;
+    height: 1920px;
+    width: 100%;
+}
+
+.container {
+    width: 1600px;
+    height: 900px;
+}
