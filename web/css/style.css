@@ -23,17 +23,21 @@ body {
     background-color: black;
     color: white;
 }
-.menu_container {
-    width: 100%;
-    height: 1300px;
+.menu_btn {
+    position: absolute;
+    bottom: 10px;
+    font-size: 30px;
+    width: 200px;
+    text-align: center;
 }
-.menu_container div {
-    display: inline;
-    margin: auto;
-    width: 33%; 
+.menu_options {
+    left: 35px;
+}
+.menu_about {
+    right: 35px;
 }
 .menu_play {
-    
+    left: 500px;
 }
 
 .menu_container div {
