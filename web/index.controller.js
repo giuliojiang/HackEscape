@@ -257,7 +257,11 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.inventory_item_click = function(item_name) {
         console.info("Player clicked on inventory item " + item_name);
-        $scope.inventory_extra.selected = item_name;
+        if ($scope.inventory_extra.selected == item_name) {
+            $scope.inventory_extra.selected = null;
+        } else {
+            $scope.inventory_extra.selected = item_name;
+        }
     };
 
     $scope.inventory_get_class = function(item_name) {

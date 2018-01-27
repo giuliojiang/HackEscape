@@ -196,7 +196,6 @@ body {
     cursor: pointer;
     display: inline-block;
     padding: 10px;
-    border: 1px solid white;
 }
 .inventory_item_present {
     color: green;
@@ -208,5 +207,5 @@ body {
 }
 
 .inventory_item_highlight {
-
+    border: 1px solid white;
 }
