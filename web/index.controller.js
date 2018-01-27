@@ -23,18 +23,27 @@ mainApp.controller("main_controller", function($scope) {
             console.info("Detected level1 auto-loading");
             $scope.current_level = hash;
             $scope.intro_start_slideshow(0);
+        } else {
+            $scope.current_level_set(hash);
         }
 
     };
 
     $scope.current_level_set = function(new_level, transition_type) {
+        console.log("Scene change to: " + new_level)
         if (transition_type == 'fade') {
             $("#black").show();
             $("#black").fadeOut();
         }
         $scope.current_level = new_level;
+
         if (new_level == 'level1') {
             $scope.intro_start_slideshow(0);
+        } else if (new_level == 'bookshelf') {
+            setTimeout(function() {
+                $( ".bookshelf_book" ).css('margin-left', '-500px');
+            }, 100);
+            
         }
     };
 
