@@ -194,7 +194,14 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.bookshelf_open_tower_voice_playing = false;
 
+    $scope.bookshelf_open_data = {
+        img: "img/qtower_black.png"
+    };
+
     $scope.bookshelf_open_tower_voice = function() {
+        $scope.bookshelf_open_data.img = 'img/queenstower_hover.png';
+        console.info("imgsrc2 is now " + $scope.imgsrc2);
+
         console.info("$scope.bookshelf_open_tower_voice");
         if ($scope.bookshelf_open_tower_voice_playing) {
             return;
@@ -203,6 +210,10 @@ mainApp.controller("main_controller", function($scope) {
         $scope.playSound("audio/book_open_tower.ogg", function() {
             $scope.bookshelf_open_tower_voice_playing = false;
         });
+    };
+
+    $scope.bookshelf_open_mouseout = function() {
+        $scope.bookshelf_open_data.img = "img/qtower_black.png";
     };
 
     $scope.bookshelf_open_click_tower = function() {
