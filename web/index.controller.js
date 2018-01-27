@@ -68,6 +68,8 @@ mainApp.controller("main_controller", function($scope) {
             
         } else if (new_level == 'bookshelf_open') {
             $scope.playMusic("audio/fire_ambiance.ogg");
+        } else if (new_level == "outside") {
+            $scope.playMusic("audio/outside_night.ogg");
         }
     };
 
@@ -152,7 +154,12 @@ mainApp.controller("main_controller", function($scope) {
     };
 
     $scope.music_track = null;
+    $scope.music_track_playing_name = null;
     $scope.playMusic = function(srcPath) {
+        // If we are already playing this, keep playing it
+        if (srcPath == $scope.music_track_playing_name) {
+            return;
+        }
         // Stop current playing music
         if ($scope.music_track) {
             // Fade out
@@ -167,6 +174,7 @@ mainApp.controller("main_controller", function($scope) {
             });
             return;
         }
+        $scope.music_track_playing_name = srcPath;
         $scope.music_track = document.createElement("audio");
         $scope.music_track.id = "music_element";
         $scope.music_track.autostart = "0";
