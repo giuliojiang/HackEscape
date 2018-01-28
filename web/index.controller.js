@@ -525,7 +525,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.qtrClick = function(slot) {
         if ($scope.doneSlot[slot]) return;
         if ($scope.inventory_extra.selected != "Puzzle "+slot) {
-            alert("This puzzle piece doesn't quite fit there. I should try somewhere else.");
+            $scope.playSound("audio/no_fit.ogg");
             return;
         }
 
