@@ -270,6 +270,16 @@ mainApp.controller("main_controller", function($scope) {
         audio_element.play();
     };
 
+    $scope.play_sound_no_overlap = function(src_path, name) {
+        if ($scope.playing[name]) {
+            return;
+        }
+        $scope.playing[name] = true;
+        $scope.playSound(src_path, function() {
+            $scope.playing[name] = false;
+        });
+    };
+
     $scope.music_track = null;
     $scope.music_track_playing_name = null;
     $scope.playMusic = function(srcPath) {
@@ -455,7 +465,7 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
         if (!$scope.inventory.key) {
-            playSound("audio/chest_need_key.ogg");
+            $scope.play_sound_no_overlap("audio/chest_need_key.ogg", "chest_no_key");
             return;
         }
 
