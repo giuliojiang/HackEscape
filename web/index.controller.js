@@ -437,7 +437,7 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
         $scope.inventory_add_item("Puzzle 4")
-        $scope.current_level_set("cr", "fade");
+        $scope.current_level_set("qtr", "fade");
     }
 
     $scope.play_chest_already_open_voice = function() {
