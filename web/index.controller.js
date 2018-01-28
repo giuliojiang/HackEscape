@@ -127,6 +127,10 @@ mainApp.controller("main_controller", function($scope) {
             $scope.intro_start_slideshow();
         } else if (new_level == 'bookshelf_open') {
             $scope.playSound("audio/bookOpen.wav");
+            setTimeout(function() {
+                $scope.playSound("audio/book_open_tower.ogg", function() {
+                });
+            }, 500);
         } else if (new_level == "outside") {
             $scope.playSound("audio/walking.wav");
             // $scope.playMusic("audio/outside_night.ogg");
@@ -267,12 +271,9 @@ mainApp.controller("main_controller", function($scope) {
 
     // Booshelf Open Voice ----------------------------------------------------
 
-    $scope.bookshelf_open_tower_voice_playing = false;
-
     $scope.bookshelf_open_data = {
         img: "img/qtower_black.png"
     };
-
 
     $scope.heardQTvoice = false;
     $scope.bookshelf_open_tower_voice = function() {
@@ -280,15 +281,6 @@ mainApp.controller("main_controller", function($scope) {
         if ($scope.heardQTvoice) return;
         $scope.heardQTvoice = true;
         console.info("imgsrc2 is now " + $scope.imgsrc2);
-
-        console.info("$scope.bookshelf_open_tower_voice");
-        if ($scope.bookshelf_open_tower_voice_playing) {
-            return;
-        }
-        $scope.bookshelf_open_tower_voice_playing = true;
-        $scope.playSound("audio/book_open_tower.ogg", function() {
-            $scope.bookshelf_open_tower_voice_playing = false;
-        });
     };
 
     $scope.bookshelf_open_mouseout = function() {
