@@ -303,20 +303,21 @@ body {
     font-size: 24px;
     width: 330px;
 }
-
-
 .best_stairs {
     position: absolute;
     left: 358px;
     top: 0;
 }
-
+.clock_hand{
+    pointer-events: none;
+}
 .cr_circle {
-    opacity: 0;
+    /*opacity: 0;*/
     width: 70px;
     height: 70px;
+    opacity: 0.4;
 }
 
 .cr_circle:hover {
-    opacity: 0.5;
+    opacity: 0.8;
 }
