@@ -66,8 +66,39 @@ var start_server = function() {
     });
 };
 
+var redirect_server = null;
+var start_redirect = function() {
+    console.info("Running redirect_server server");
+    redirect_server = spawn(path.join(__dirname, "nodejs_redirect_server.js"), []);
+
+    redirect_server.stdout.on('data', (data) => {
+        var splt = data.toString().split('\n');
+        for (var i = 0; i < splt.length; i++) {
+            console.info(splt[i]);
+        }
+    });
+
+    redirect_server.stderr.on('data', (data) => {
+        var splt = data.toString().split('\n');
+        for (var i = 0; i < splt.length; i++) {
+            console.info(splt[i]);
+        }
+    });
+
+    redirect_server.on('close', (code) => {
+        console.info("redirect_server server stopped...");
+        if (global_status == "running") {
+            console.info("Restarting redirect server...");
+            setImmediate(function() {
+                start_redirect();
+            });
+        }
+    });
+};
+
 start_pull();
 start_server();
+start_redirect();
 
 process.on('SIGINT', function() {
     console.log("HOST: Caught interrupt signal");

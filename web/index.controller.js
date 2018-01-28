@@ -138,15 +138,51 @@ mainApp.controller("main_controller", function($scope) {
             $scope.playMusic("audio/ending.wav");
                     setTimeout(() => jQuery( "#ending_black" ).animate({
                         opacity: 0,
-                        },4000), 200);
-                    // setTimeout(() => jQuery( "#ending_light" ).animate({
-                    //     opacity: 1,
-                    //     }, 6000), 1000);
-                    setTimeout(() => jQuery( "#ending_big" ).animate({
-                        top: 0
-                        }, 6000), 4000);
+
+                        }, 3000), 200);
+                    setTimeout(() => jQuery( "#ending_light" ).animate({
+                        opacity: 1,
+                        }, 6000), 1000);
+            setTimeout(function() {
+                $scope.play_voice_sequence([
+                    {
+                        txt: "",
+                        audio: "audio/treasure1.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/treasure2.ogg"
+                    }
+                ], "nothing", function() {
+                    console.info("Final voice lines completed");
+                });
+            }, 2000);
         } else if (new_level == "qtr") {
             console.log($scope.inventory)
+        } else if (new_level == "cr") {
+            setTimeout(function() {
+                $scope.play_voice_sequence([
+                    {
+                        txt: "",
+                        audio: "audio/clock1.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/clock2.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/clock3.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/clock4.ogg"
+                    }
+                ], "nothing", function() {
+                    console.info("Clock voice lines ended");
+                });
+            }, 1500);
+
         }
     };
 
@@ -156,7 +192,8 @@ mainApp.controller("main_controller", function($scope) {
         intro: "",
         bookshelf: "",
         outside_door: "",
-        lion: ""
+        lion: "",
+        nothing: ""
     };
 
     $scope.intro_text_set = [
@@ -232,6 +269,16 @@ mainApp.controller("main_controller", function($scope) {
         };
         // Start playing
         audio_element.play();
+    };
+
+    $scope.play_sound_no_overlap = function(src_path, name) {
+        if ($scope.playing[name]) {
+            return;
+        }
+        $scope.playing[name] = true;
+        $scope.playSound(src_path, function() {
+            $scope.playing[name] = false;
+        });
     };
 
     $scope.music_track = null;
@@ -385,9 +432,9 @@ mainApp.controller("main_controller", function($scope) {
         if ($scope.playing.chest_need_open) {
             return;
         }
-        $scope.play_chest_need_open = true;
+        $scope.playing.chest_need_open = true;
         $scope.playSound("audio/chest_need_to_look.ogg", function() {
-            $scope.play_chest_need_open = false;
+            $scope.playing.chest_need_open = false;
         });
     };
 
@@ -419,7 +466,7 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
         if (!$scope.inventory.key) {
-            playSound("audio/chest_need_key.ogg");
+            $scope.play_sound_no_overlap("audio/chest_need_key.ogg", "chest_no_key");
             return;
         }
 
@@ -489,7 +536,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.qtrClick = function(slot) {
         if ($scope.doneSlot[slot]) return;
         if ($scope.inventory_extra.selected != "Puzzle "+slot) {
-            alert("This puzzle piece doesn't quite fit there. I should try somewhere else.");
+            $scope.playSound("audio/no_fit.ogg");
             return;
         }
 
