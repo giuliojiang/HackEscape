@@ -2,16 +2,23 @@
 
     <img class="bg" src="img/qtr_bg.png" style="z-index: -970" />
 
+    <!-- QTR HOVERS  -->
+    <img id="qtr1" class="obj" src="{{imgsrc11}}" ng-hide="doneSlot[1]" ng-init="imgsrc11='img/qtr_blank.png'" ng-mouseover="imgsrc11='img/qtr_white.png'" ng-mouseout="imgsrc11='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(1)" />
 
-    <img id="qtr1" class="obj" src="{{imgsrc11}}" ng-hide="doneSlot1" ng-init="imgsrc11='img/qtr_blank.png'" ng-mouseover="imgsrc11='img/qtr_white.png'" ng-mouseout="imgsrc11='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick1()" />
+    <img id="qtr2" class="obj" src="{{imgsrc12}}" ng-hide="doneSlot[2]" ng-init="imgsrc12='img/qtr_blank.png'" ng-mouseover="imgsrc12='img/qtr_white.png'" ng-mouseout="imgsrc12='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(2)" />
 
-    <img id="qtr2" class="obj" src="{{imgsrc12}}" ng-hide="doneSlot2" ng-init="imgsrc12='img/qtr_blank.png'" ng-mouseover="imgsrc12='img/qtr_white.png'" ng-mouseout="imgsrc12='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick2()" />
+    <img id="qtr3" class="obj" src="{{imgsrc13}}" ng-hide="doneSlot[3]" ng-init="imgsrc13='img/qtr_blank.png'" ng-mouseover="imgsrc13='img/qtr_white.png'" ng-mouseout="imgsrc13='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(3)" />
 
-    <img id="qtr3" class="obj" src="{{imgsrc13}}" ng-hide="doneSlot3" ng-init="imgsrc13='img/qtr_blank.png'" ng-mouseover="imgsrc13='img/qtr_white.png'" ng-mouseout="imgsrc13='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick3()" />
+    <img id="qtr4" class="obj" src="{{imgsrc14}}" ng-hide="doneSlot[4]" ng-init="imgsrc14='img/qtr_blank.png'" ng-mouseover="imgsrc14='img/qtr_white.png'" ng-mouseout="imgsrc14='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(4)" />
 
-    <img id="qtr4" class="obj" src="{{imgsrc14}}" ng-hide="doneSlot4" ng-init="imgsrc14='img/qtr_blank.png'" ng-mouseover="imgsrc14='img/qtr_white.png'" ng-mouseout="imgsrc14='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick4()" />
-    
-    <img id="qtr_wall" class="bg" src="img/qtr_wall.png" style="z-index: -988;" />
+    <!-- QTR COMPLETED SHOWS -->
+    <img class="bg" src="img/qtr_1.png" ng-show="doneSlot[1]" style="z-index: -969; pointer-events: none" />
+    <img class="bg" src="img/qtr_2.png" ng-show="doneSlot[2]" style="z-index: -969; pointer-events: none" />
+    <img class="bg" src="img/qtr_3.png" ng-show="doneSlot[3]" style="z-index: -969; pointer-events: none" />
+    <img class="bg" src="img/qtr_4.png" ng-show="doneSlot[4]" style="z-index: -969; pointer-events: none" />
+
+    <img id="qtr_wall" class="bg" src="img/qtr_wall.png" style="z-index: -900;" ng-show="doneAllSlots" /> 
+    <img class="bg" src="img/qtr_stairs.png" style="z-index: -905;" ng-show="doneAllSlots" /> 
     <!--TODO - This scene needs as background the outdoors scene at night-->
 
     <!--TODO replace this with the clickable door-->
