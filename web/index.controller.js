@@ -43,7 +43,7 @@ mainApp.controller("main_controller", function($scope) {
             return $scope.$apply();
         }
         // Care that the item is supported.
-        $scope.phoneMsg = `You have successfully received a ${scope.latestResults.mostLikely.name}!`;
+        $scope.phoneMsg = `You have successfully received a ${$scope.latestResults.mostLikely.name}!`;
         $scope.inventory_add_item("key");
         $scope.showOrHidePhone(false);
         $scope.$apply();
@@ -386,6 +386,7 @@ mainApp.controller("main_controller", function($scope) {
             alert("I wanna open that chest first.");
             return;
         }
+        $scope.inventory_add_item("Puzzle 4")
         $scope.current_level_set("qtr", "fade");
     }
 
@@ -401,6 +402,8 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
 
+        $scope.inventory_add_item("Puzzle 2")
+        $scope.inventory_add_item("Puzzle 3")
         $scope.chest_opened = true;
         $scope.inventory_remove_item("key");
         $scope.playSound("audio/chestOpen.wav");
@@ -443,11 +446,12 @@ mainApp.controller("main_controller", function($scope) {
 
 
     // QTR STUFF
-    $scope.inventory_add_item("Puzzle 1");
-    $scope.inventory_add_item("Puzzle 2");
-    $scope.inventory_add_item("Puzzle 3");
-    $scope.inventory_add_item("Puzzle 4");
-    $scope.inventory_add_item("book");
+    // $scope.inventory_add_item("Puzzle 1");
+    // $scope.inventory_add_item("Puzzle 2");
+    // $scope.inventory_add_item("Puzzle 3");
+    // $scope.inventory_add_item("Puzzle 4");
+    // $scope.inventory_add_item("book");
+
     $scope.entrance_opened = false;
     $scope.doneAllSlots = false;
     $scope.doneSlot = [false, true, true, true, false];
@@ -458,6 +462,7 @@ mainApp.controller("main_controller", function($scope) {
                         opacity: 1,
                         marginTop: "-700px"
                         }, 3000), 400);
+        setTimeout(() => { $scope.current_level_set("ending"); $scope.$apply(); }, 3100);
     }
 
     $scope.qtrClick = function(slot) {
@@ -481,6 +486,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.open_entrance = function() {
         if ($scope.entrance_opened) return; // Already opened so dont reopen
         $scope.entrance_opened = true;
+        $scope.inventory_add_item("Puzzle 1");
         $scope.playSound("audio/light.wav");
         setTimeout(() => $( "#left_door" ).animate({
                 opacity: 1,
@@ -553,6 +559,21 @@ mainApp.controller("main_controller", function($scope) {
     $scope.lion_back = function() {
         $scope.current_level_set("outside", "fade");
     };
+
+    // CLOCK STUFF HERE
+    $clock = {
+        zoomed: false,
+        minute: 7,
+        hour: 7
+    }
+    $scope.completed_clock = function() {
+        return $scope.hour == 6 && $scope.minute == 30;
+    }
+    $scope.zoom_clock = function() {
+        $scope.clock.zoomed = true;
+    }
+
+
 
 
     // Initialization calls ---------------------------------------------------

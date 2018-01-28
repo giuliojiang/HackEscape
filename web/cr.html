@@ -1,0 +1,14 @@
+<div>
+
+    
+    <img class="bg" src="img/cr_bg.png" />
+
+    <img class="obj" src="{{imgsrc701}}" ng-init="imgsrc701='img/cr_clock_wrong.png'" ng-mouseover="imgsrc701='img/cr_clock_wrong_hover.png'" ng-mouseout="imgsrc701='img/cr_clock_wrong.png'" ng-click="zoom_clock()" style="z-index: 1001; top: 211px; left: 605px;" ng-hide="completed_clock()" />
+
+    <img id="cd_door" class="obj" src="{{imgsrc702}}" ng-init="imgsrc702='img/cr_door.png'" ng-mouseover="imgsrc702='img/cr_door_hover.png'" ng-mouseout="imgsrc702='img/cr_door.png'" style="z-index: 1000; top: 172px; left: 491px;" ng-click="clock_open_door()" />
+
+        <img class="obj" src="img/cr_zoom.png" style="z-index: 1001; top: 0; left: 0;" ng-show="clock.zoomed" />
+
+
+
+</div>

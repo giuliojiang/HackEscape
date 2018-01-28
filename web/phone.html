@@ -170,13 +170,13 @@ function SubmitImageForm() {
 
 function startLoading() {
     $("#capture").attr('disabled', true);
-    $("#capture").html("Loading...");
+    $("#capture").attr('src', 'img/loading_btn.png');
 }
 
 
 function stopLoading() {
     $("#capture").attr('disabled', false);
-    $("#capture").html("Capture");
+    $("#capture").attr('src', 'img/camera_btn.png');
 }
 
 
