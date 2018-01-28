@@ -308,7 +308,9 @@ mainApp.controller("main_controller", function($scope) {
         "Puzzle 1",
         "Puzzle 2",
         "Puzzle 3",
-        "Puzzle 4"
+        "Puzzle 4",
+        "Minute Hand",
+        "Hour Hand"
     ];
 
     $scope.inventory_extra = {
@@ -567,10 +569,43 @@ mainApp.controller("main_controller", function($scope) {
         hour: 'sw'
     }
     $scope.completed_clock = function() {
-        return $scope.hour == 's' && $scope.minute == 'n';
+        return $scope.clock.hour == 's' && $scope.clock.minute == 'n';
     }
     $scope.zoom_clock = function() {
         $scope.clock.zoomed = true;
+    }
+    $scope.clock_put = function(where) {
+        if ($scope.clock.hour == where) {
+            $scope.inventory_add_item("Hour Hand");
+            $scope.clock.hour = "";
+        } 
+        else if ($scope.clock.minute == where) {
+            $scope.inventory_add_item("Minute Hand");
+            $scope.clock.minute = "";
+        }
+        else if ($scope.inventory_extra.selected == "Hour Hand") {
+            $scope.inventory_remove_item("Hour Hand");
+            $scope.clock.hour = where;
+        } else if ($scope.inventory_extra.selected == "Minute Hand") {
+            $scope.inventory_remove_item("Minute Hand");
+            $scope.clock.minute = where;
+        }
+
+        if ($scope.completed_clock()) {
+            playSound("audio/clockTick.wav");
+            $scope.clock.zoomed = false;
+            $scope.playSound("audio/doorOpen.wav");
+
+            setTimeout(() => $( "#cd_door" ).animate({
+                    opacity: 1,
+                    width: "0px",
+                    height: "465px",
+                    marginLeft: "397px"
+                    }, 1500), 200);
+
+            setTimeout(() => { $scope.current_level_set("qtr"); $scope.$apply() }, 1500);
+        }
+        console.log($scope.clock);
     }
 
 
