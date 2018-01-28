@@ -289,7 +289,9 @@ body {
     left: 695px;
     top: 165px;
 }
-
+#ending_black {
+    width: 100%;
+}
 #ending_light { opacity: 0; }
 #qtr1:hover, #qtr2:hover, #qtr3:hover, #qtr4:hover {opacity: 0.4;}
 

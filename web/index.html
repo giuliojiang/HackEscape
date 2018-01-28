@@ -26,7 +26,7 @@
     </head>
     <body ng-app="mainApp" ng-controller="main_controller">
         <div id="most_outer_container">
-            <div ng-include="'phone.html'" ng-show="is_game_scene()"></div>
+            <div ng-include="'phone.html'" ng-show="is_game_scene() && current_level != 'ending'"></div>
 
             <div id='black'></div>
             <div class="container" ng-include="'menu.html'" ng-show="current_level == 'menu'"></div>
