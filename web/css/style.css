@@ -197,6 +197,11 @@ body {
     display: inline-block;
     padding: 10px;
 }
+
+.inventory_item:hover {
+    /*opacity: 0.9;*/
+}
+
 .inventory_item_present {
     color: green;
 }
@@ -229,3 +234,22 @@ body {
     left: 620px;
     top: 289px;
 }
+
+
+#qtr1 {
+    left: 515px;
+    top: 41px;
+}
+#qtr2 {
+    left: 695px;
+    top: 41px;
+}
+#qtr3 {
+    left: 515px;
+    top: 165px;
+}
+#qtr4 {
+    left: 695px;
+    top: 165px;
+}
+#qtr1:hover, #qtr2:hover, #qtr3:hover, #qtr4:hover {opacity: 0.4;}

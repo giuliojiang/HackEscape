@@ -341,6 +341,12 @@ mainApp.controller("main_controller", function($scope) {
     $scope.inventory_add_item("Puzzle 3");
     $scope.inventory_add_item("Puzzle 4");
     $scope.entrance_opened = false;
+
+    $scope.doneSlot1 = false;
+    $scope.doneSlot2 = false;
+    $scope.doneSlot3 = false;
+    $scope.doneSlot4 = false;
+
     $scope.open_entrance = function() {
         if ($scope.entrance_opened) return; // Already opened so dont reopen
         $scope.entrance_opened = true;
