@@ -32,7 +32,7 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.phoneHandler = function() {
         console.log("phone handler", $scope.latestResults)
-        if ($scope.latestResults.mostLikely.prob < 0.5 || $scope.latestResults.mostLikely.name == "" || !$scope.latestResults.mostLikely.name) {
+        if ($scope.latestResults.mostLikely.prob < 0.05 || $scope.latestResults.mostLikely.name == "" || !$scope.latestResults.mostLikely.name) {
             $scope.phoneMsg = "I'm not sure what that item is, please scan it again."
             return $scope.$apply();
         }
