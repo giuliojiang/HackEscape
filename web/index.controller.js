@@ -2,18 +2,33 @@ var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
 
 mainApp.controller("main_controller", function($scope) {
     $scope.phoneMsg = '';
+    $scope.phoneLoading = false;
+    $scope.showPhone = false;
+    $scope.togglePhone = function() {
+        $scope.showOrHidePhone(!$scope.showPhone);
+    };
+
+    $scope.showOrHidePhone = function(showBool) {
+        $scope.showPhone = showBool;
+        $scope.latestResults = jQuery.extend({}, latestResults);
+        latestResults = {
+           mostLikely: { name: "", prob: -1 } // Empty string means unknown
+        };
+        $scope.phoneMsg = '';
+    };
+
     // PHone stuff
     setInterval(function() {
         $scope.latestResults = jQuery.extend({}, latestResults);
         latestResults = {
-           mostLikely: { name: "", prob: 0 } // Empty string means unknown
+           mostLikely: { name: "", prob: -1 } // Empty string means unknown
         };
-        if ($scope.latestResults.mostLikely.name != "" && $scope.latestResults.mostLikely.name) {
+        if ($scope.latestResults.mostLikely.prob != -1) {
             $scope.phoneHandler();
         }
-        console.log("PLEASE WORK Latest Results", $scope.latestResults);
+        // console.log("PLEASE WORK Latest Results", $scope.latestResults);
         
-    }, 4000);
+    }, 50);
 
     $scope.phoneHandler = function() {
         console.log("phone handler", $scope.latestResults)
@@ -22,14 +37,14 @@ mainApp.controller("main_controller", function($scope) {
             return $scope.$apply();
         }
         if ($scope.latestResults.mostLikely.name != "key") {
-            $scope.phoneMsg = "I don't think I need the "+$scope.latestResults.mostLikely.name+" anymore.";
+            $scope.phoneMsg = "I don't think I need the "+$scope.latestResults.mostLikely.name+" right now.";
             return $scope.$apply();
         }
         // Care that the item is supported.
-        $scope.phoneMsg = "You have successfully received a "+$scope.latestResults.mostLikely.name;
+        $scope.phoneMsg = `You have successfully received a ${scope.latestResults.mostLikely.name}!`;
         $scope.inventory_add_item("key");
+        $scope.showOrHidePhone(false);
         $scope.$apply();
-
     };
 
     // Flicker

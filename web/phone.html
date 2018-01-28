@@ -1,19 +1,49 @@
 <div class="phone">
-    <img id="phone" src="img/phone.png" />
+    <img id="phone" src="img/phone{{ showPhone ? '_glow' : ''}}.png" ng-click="togglePhone()" />
 
-    <video id="player" style="position: absolute; top: 30px; left: 350px;" autoplay></video>
-<div id="capture">Capture</div>
-<canvas id="canvas" style="margin-top: 5px" width=320 height=240></canvas>
+    <div ng-show="showPhone">
+        <video id="player" style="position: absolute; top: 30px; left: 350px;" autoplay></video>
 
-<button id="analyze" style="display: none">Analyze</button>
+        <div id="capture">Capture Item</div>
+        <canvas id="canvas" style="margin-top: 5px" width=320 height=240></canvas>
 
-<div id="scan_notif" ng-show="phoneMsg != ''">{{phoneMsg}}</div>
+        <button id="analyze" style="display: none">Analyze</button>
+
+        <div id="scan_notif" ng-show="phoneMsg != ''">{{phoneMsg}}</div>
+    </div>
+
+
 </div>
 
 <script>
 
 
   var scannableItems = ["key", "water"];
+
+  var sound_last_index = 1000000000;
+  function playSound(srcPath, onEnd) {
+        console.info("Start playing " + srcPath);
+        var audio_element = document.createElement("audio");
+        var element_id = "sound_element_" + sound_last_index;
+        sound_last_index--;
+        // Set the element's id
+        audio_element.id = element_id;
+        audio_element.autostart = "0";
+        // Source
+        audio_element.src = srcPath;
+        // Add to page
+        document.body.appendChild(audio_element);
+        // OnEnded listener
+        audio_element.onended = function() {
+            if (onEnd) {
+                onEnd();
+            }
+            audio_element.pause();
+            audio_element.remove();
+        };
+        // Start playing
+        audio_element.play();
+    };
 
   function resultHandler(data) {
      latestResults.mostLikely = getMostLikelyItem(data);
@@ -47,6 +77,9 @@
 
   captureButton.addEventListener('click', () => {
     // Draw the video frame to the canvas.
+    if ($("#capture").attr('disabled')) return;
+    playSound("audio/camera.wav");
+    startLoading();
     context.drawImage(player, 0, 0, canvas.width, canvas.height);
     setTimeout(() => SubmitImageForm(), 1000);
   });
@@ -124,12 +157,26 @@ function SubmitImageForm() {
             console.log("SUCCESS");
             console.log(data);
             resultHandler(data);
+            stopLoading();
         })
         .fail(function(error) {
             console.log(error);
+            latestResults.mostLikely = { name: "", prob: 0 }
+            stopLoading();
             // alert("error");
         });
     });
+}
+
+function startLoading() {
+    $("#capture").attr('disabled', true);
+    $("#capture").html("Loading...");
+}
+
+
+function stopLoading() {
+    $("#capture").attr('disabled', false);
+    $("#capture").html("Capture");
 }
 
 
