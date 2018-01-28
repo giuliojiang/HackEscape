@@ -138,10 +138,13 @@ mainApp.controller("main_controller", function($scope) {
             $scope.playMusic("audio/ending.wav");
                     setTimeout(() => jQuery( "#ending_black" ).animate({
                         opacity: 0,
-                        }, 3000), 200);
-                    setTimeout(() => jQuery( "#ending_light" ).animate({
-                        opacity: 1,
-                        }, 6000), 1000);
+                        },4000), 200);
+                    // setTimeout(() => jQuery( "#ending_light" ).animate({
+                    //     opacity: 1,
+                    //     }, 6000), 1000);
+                    setTimeout(() => jQuery( "#ending_big" ).animate({
+                        top: 0
+                        }, 6000), 4000);
         } else if (new_level == "qtr") {
             console.log($scope.inventory)
         }
@@ -608,7 +611,10 @@ mainApp.controller("main_controller", function($scope) {
         }
 
         if ($scope.completed_clock()) {
-            playSound("audio/clockTick.wav");
+            $scope.playSound("audio/clockTick.wav");
+            setTimeout(() => { $scope.playSound("audio/chime6.wav"); }, 2000);
+            setTimeout(() => { $scope.current_level_set("qtr"); $scope.$apply() }, 4000);
+            
             $scope.clock.zoomed = false;
             $scope.playSound("audio/doorOpen.wav");
 
@@ -619,7 +625,6 @@ mainApp.controller("main_controller", function($scope) {
                     marginLeft: "397px"
                     }, 1500), 200);
 
-            setTimeout(() => { $scope.current_level_set("qtr"); $scope.$apply() }, 1500);
         }
         console.log($scope.clock);
     }
