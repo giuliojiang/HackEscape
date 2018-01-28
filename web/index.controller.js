@@ -426,15 +426,8 @@ mainApp.controller("main_controller", function($scope) {
     // Ground Stuff Floor (CHEST PUZZLE)
     $scope.obtainedKey = false;
 
-    $scope.playing.chest_need_open = false;
     $scope.play_chest_need_open = function() {
-        if ($scope.playing.chest_need_open) {
-            return;
-        }
-        $scope.playing.chest_need_open = true;
-        $scope.playSound("audio/chest_need_to_look.ogg", function() {
-            $scope.playing.chest_need_open = false;
-        });
+        $scope.play_sound_no_overlap("audio/chest_need_to_look.ogg", "chest_need_to_look");
     };
 
     $scope.goUpGroundStairs = function() {
@@ -446,15 +439,8 @@ mainApp.controller("main_controller", function($scope) {
         $scope.current_level_set("cr", "fade");
     }
 
-    $scope.playing.chest_already_open = false;
     $scope.play_chest_already_open_voice = function() {
-        if ($scope.playing.chest_already_open) {
-            return;
-        }
-        $scope.playing.chest_already_open = true;
-        $scope.playSound("audio/chest_already_open.ogg", function() {
-            $scope.playing.chest_already_open = false
-        });
+        $scope.play_sound_no_overlap("audio/chest_already_open.ogg", "chest_already_open");
     };
 
     $scope.chest_opened = false;
@@ -535,7 +521,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.qtrClick = function(slot) {
         if ($scope.doneSlot[slot]) return;
         if ($scope.inventory_extra.selected != "Puzzle "+slot) {
-            $scope.playSound("audio/no_fit.ogg");
+            $scope.play_sound_no_overlap("audio/no_fit.ogg", "no_fit");
             return;
         }
 
