@@ -1,4 +1,4 @@
-<div class="phone">
+<div class="phone" ng-keyup="phone_keyup($event.keyCode)">
     <img id="phone" src="img/phone{{ showPhone ? '_glow' : ''}}.png" ng-click="togglePhone()" />
 
     <div ng-show="showPhone">
