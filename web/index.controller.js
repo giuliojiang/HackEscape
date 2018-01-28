@@ -1,6 +1,37 @@
 var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
 
 mainApp.controller("main_controller", function($scope) {
+    $scope.phoneMsg = '';
+    // PHone stuff
+    setInterval(function() {
+        $scope.latestResults = jQuery.extend({}, latestResults);
+        latestResults = {
+           mostLikely: { name: "", prob: 0 } // Empty string means unknown
+        };
+        if ($scope.latestResults.mostLikely.name != "" && $scope.latestResults.mostLikely.name) {
+            $scope.phoneHandler();
+        }
+        console.log("PLEASE WORK Latest Results", $scope.latestResults);
+        
+    }, 4000);
+
+    $scope.phoneHandler = function() {
+        console.log("phone handler", $scope.latestResults)
+        if ($scope.latestResults.mostLikely.prob < 0.5 || $scope.latestResults.mostLikely.name == "" || !$scope.latestResults.mostLikely.name) {
+            $scope.phoneMsg = "I'm not sure what that item is, please scan it again."
+            return $scope.$apply();
+        }
+        if ($scope.latestResults.mostLikely.name != "key") {
+            $scope.phoneMsg = "I don't think I need the "+$scope.latestResults.mostLikely.name+" anymore.";
+            return $scope.$apply();
+        }
+        // Care that the item is supported.
+        $scope.phoneMsg = "You have successfully received a "+$scope.latestResults.mostLikely.name;
+        $scope.inventory_add_item("key");
+        $scope.$apply();
+
+    };
+
     // Flicker
     setInterval(function(){
         $(".flicker").css('opacity', Math.random() * 3);
@@ -330,7 +361,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.obtainedKey = false;
 
     $scope.chest_opened = false;
-    $scope.inventory_add_item("key");
+    // $scope.inventory_add_item("key");
     $scope.openChest = function() {
         if ($scope.chest_opened) {
             alert("u already opened it m8")
@@ -492,5 +523,5 @@ mainApp.controller("main_controller", function($scope) {
     get_window_hash();
 
     // EVERYTHING BELOW THIS LINE IS THE VISION API MICROSOFT
-    
+
 });

@@ -5,7 +5,13 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/tt.css">
+        <!-- HACKY GLOBAL VARIABLES HERE -->
+        <script>
 
+  var latestResults = {
+     mostLikely: { name: "", prob: 0 } // Empty string means unknown
+  };
+</script>
         <!-- Angular -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
         <!-- Controller -->
@@ -21,7 +27,7 @@
     <body ng-app="mainApp" ng-controller="main_controller">
         <div id="most_outer_container">
             <div ng-include="'phone.html'" ng-show="is_game_scene()"></div>
-            
+
             <div id='black'></div>
             <div class="container" ng-include="'menu.html'" ng-show="current_level == 'menu'"></div>
             <div class="container" ng-include="'bookshelf.html'" ng-show="current_level == 'bookshelf'"></div>

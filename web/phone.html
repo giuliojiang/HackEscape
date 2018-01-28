@@ -1,20 +1,17 @@
 <div class="phone">
     <img id="phone" src="img/phone.png" />
-    
+
     <video id="player" style="position: absolute; top: 30px; left: 350px;" autoplay></video>
 <div id="capture">Capture</div>
 <canvas id="canvas" style="margin-top: 5px" width=320 height=240></canvas>
 
 <button id="analyze" style="display: none">Analyze</button>
 
-<div id="scan_notif">You have successfully received a key</div>
+<div id="scan_notif" ng-show="phoneMsg != ''">{{phoneMsg}}</div>
 </div>
 
 <script>
 
-  var latestResults = {
-     mostLikely: { name: "", prob: 0 } // Empty string means unknown
-  };
 
   var scannableItems = ["key", "water"];
 
@@ -34,6 +31,7 @@
         }
      }
      console.log("mostLikely", mostLikely);
+     if (mostLikely == "keys") mostLikely = "key";
      return { name: mostLikely, prob: highestSoFar };
   }
 
