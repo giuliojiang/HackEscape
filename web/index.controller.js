@@ -667,7 +667,7 @@ mainApp.controller("main_controller", function($scope) {
 
     window.cheat = function() {
         console.info("CHEATY SKIP");
-        latestResults.mostLikely = { name: "key", prob: 0 };
+        latestResults.mostLikely = { name: "key", prob: 1 };
     };
 
     // Initialization calls ---------------------------------------------------
