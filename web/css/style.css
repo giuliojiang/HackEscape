@@ -310,3 +310,13 @@ body {
     left: 358px;
     top: 0;
 }
+
+.cr_circle {
+    opacity: 0;
+    width: 70px;
+    height: 70px;
+}
+
+.cr_circle:hover {
+    opacity: 0.5;
+}

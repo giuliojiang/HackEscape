@@ -561,13 +561,13 @@ mainApp.controller("main_controller", function($scope) {
     };
 
     // CLOCK STUFF HERE
-    $clock = {
+    $scope.clock = {
         zoomed: false,
-        minute: 7,
-        hour: 7
+        minute: 'ne',
+        hour: 'sw'
     }
     $scope.completed_clock = function() {
-        return $scope.hour == 6 && $scope.minute == 30;
+        return $scope.hour == 's' && $scope.minute == 'n';
     }
     $scope.zoom_clock = function() {
         $scope.clock.zoomed = true;

@@ -7,8 +7,18 @@
 
     <img id="cd_door" class="obj" src="{{imgsrc702}}" ng-init="imgsrc702='img/cr_door.png'" ng-mouseover="imgsrc702='img/cr_door_hover.png'" ng-mouseout="imgsrc702='img/cr_door.png'" style="z-index: 1000; top: 172px; left: 491px;" ng-click="clock_open_door()" />
 
-        <img class="obj" src="img/cr_zoom.png" style="z-index: 1001; top: 0; left: 0;" ng-show="clock.zoomed" />
 
 
+
+
+        <img class="obj" src="img/cr_zoom.png" style="z-index: 2001; top: 0; left: 0;" ng-show="!clock.zoomed" />
+
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 640px; top: 130px;" ng-click="clock_put('n')" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 490px; top: 280px;" ng-click="clock_put('e')" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 640px; top: 440px;" ng-click="clock_put('s')" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 790px; top: 280px;" ng-click="clock_put('w')" />
+
+
+    <img class="obj clock_hand" src="img/cr_h_n.png" />
 
 </div>
