@@ -21,7 +21,9 @@ body {
     font-family: 'main';
     border: 0;
     background-color: black;
-    color: white;
+    color: white;  
+    overflow:hidden;
+
 }
 .menu_btn {
     position: absolute;
