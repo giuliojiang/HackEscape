@@ -204,6 +204,8 @@ mainApp.controller("main_controller", function($scope) {
 
     // Sound playback functions -----------------------------------------------
 
+    $scope.playing = {};
+
     $scope.sound_last_index = 0;
     $scope.playSound = function(srcPath, onEnd) {
         console.info("Start playing " + srcPath);
@@ -373,9 +375,20 @@ mainApp.controller("main_controller", function($scope) {
     // Ground Floor (CHEST PUZZLE)
     $scope.obtainedKey = false;
 
+    $scope.playing.chest_need_open = false;
+    $scope.play_chest_need_open = function() {
+        if ($scope.playing.chest_need_open) {
+            return;
+        }
+        $scope.play_chest_need_open = true;
+        $scope.playSound("audio/chest_need_to_look.ogg", function() {
+            $scope.play_chest_need_open = false;
+        });
+    };
+
     $scope.goUpGroundStairs = function() {
         if (!$scope.chest_opened) {
-            alert("I wanna open that chest first.");
+            $scope.play_chest_need_open();
             return;
         }
         $scope.inventory_add_item("Puzzle 4")
