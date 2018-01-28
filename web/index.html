@@ -20,6 +20,8 @@
     </head>
     <body ng-app="mainApp" ng-controller="main_controller">
         <div id="most_outer_container">
+            <div ng-include="'phone.html'" ng-show="is_game_scene()"></div>
+            
             <div id='black'></div>
             <div class="container" ng-include="'menu.html'" ng-show="current_level == 'menu'"></div>
             <div class="container" ng-include="'bookshelf.html'" ng-show="current_level == 'bookshelf'"></div>
@@ -30,6 +32,8 @@
             <div class="container" ng-include="'lion.html'" ng-show="current_level == 'lion'"></div>
             <div class="container" ng-include="'entrance.html'" ng-show="current_level == 'entrance'"></div>
             <div class="container" ng-include="'qtr.html'" ng-show="current_level == 'qtr'"></div>
+            <div class="container" ng-include="'ending.html'" ng-show="current_level == 'ending'"></div>
+            <div class="container" ng-include="'ground.html'" ng-show="current_level == 'ground'"></div>
 
             <!--Inventory-->
             <div ng-include="'inventory.html'" ng-show="inventory_is_visible()"></div>

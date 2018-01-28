@@ -1,0 +1,13 @@
+<div>
+
+    
+    <img class="bg" src="img/ground.png" />
+
+    <img id="chest" class="obj" src="{{imgsrc101}}" ng-init="imgsrc101='img/chest.png'" ng-mouseover="imgsrc101='img/chest_hover.png'" ng-mouseout="imgsrc101='img/chest.png'" style="z-index: 1200; top: 450px; left: 840px;" ng-click="openChest()" ng-hide="chest_opened" />
+
+
+
+    <img id="chest_opened" class="obj" src="img/chest_opened.png" style="z-index: 1200; top: 450px; left: 840px;" ng-click="openChest()" ng-show="chest_opened" />
+
+
+</div>
