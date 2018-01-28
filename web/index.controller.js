@@ -78,9 +78,8 @@ mainApp.controller("main_controller", function($scope) {
         } else if (new_level == "outside") {
             $scope.playMusic("audio/outside_night.ogg");
         } else if (new_level == "qtr") {
-            $scope.inventory_add_item("book");
+            console.log($scope.inventory)
         }
-        $scope.$apply();
     };
 
     // Level 1 - Intro text and narration -------------------------------------
@@ -238,10 +237,10 @@ mainApp.controller("main_controller", function($scope) {
         "key",
         "book",
         "phone",
-        "qtr1",
-        "qtr2",
-        "qtr3",
-        "qtr4"
+        "Puzzle 1",
+        "Puzzle 2",
+        "Puzzle 3",
+        "Puzzle 4"
     ];
 
     $scope.inventory_extra = {
@@ -254,12 +253,12 @@ mainApp.controller("main_controller", function($scope) {
     }
 
     $scope.inventory_is_visible = function() {
-        var scenes_with_inventory = {
-            "bookshelf_open": true,
-            "outside": true,
-            "lion": true
-        };
-        return !!scenes_with_inventory[$scope.current_level];
+        // var scenes_with_inventory = {
+        //     "bookshelf_open": true,
+        //     "outside": true,
+        //     "lion": true
+        // };
+        return true;//!!scenes_with_inventory[$scope.current_level];
     };
 
     $scope.inventory_item_click = function(item_name) {
@@ -335,6 +334,12 @@ mainApp.controller("main_controller", function($scope) {
         }
     };
 
+
+    // QTR STUFF
+    $scope.inventory_add_item("Puzzle 1");
+    $scope.inventory_add_item("Puzzle 2");
+    $scope.inventory_add_item("Puzzle 3");
+    $scope.inventory_add_item("Puzzle 4");
     $scope.entrance_opened = false;
     $scope.open_entrance = function() {
         if ($scope.entrance_opened) return; // Already opened so dont reopen
