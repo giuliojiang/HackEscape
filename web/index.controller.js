@@ -663,7 +663,12 @@ mainApp.controller("main_controller", function($scope) {
     }
 
 
+    // Phone ------------------------------------------------------------------
 
+    window.cheat = function() {
+        console.info("CHEATY SKIP");
+        latestResults.mostLikely = { name: "key", prob: 1 };
+    };
 
     // Initialization calls ---------------------------------------------------
 
