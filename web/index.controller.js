@@ -271,8 +271,12 @@ mainApp.controller("main_controller", function($scope) {
         img: "img/qtower_black.png"
     };
 
+
+    $scope.heardQTvoice = false;
     $scope.bookshelf_open_tower_voice = function() {
         $scope.bookshelf_open_data.img = 'img/queenstower_hover.png';
+        if ($scope.heardQTvoice) return;
+        $scope.heardQTvoice = true;
         console.info("imgsrc2 is now " + $scope.imgsrc2);
 
         console.info("$scope.bookshelf_open_tower_voice");
@@ -410,15 +414,15 @@ mainApp.controller("main_controller", function($scope) {
             $scope.outside_door_click_playing = true;
             $scope.play_voice_sequence([
                 {
-                    txt: "It's locked",
+                    txt: "It's locked.",
                     audio: "audio/outside_locked_01.ogg"
                 },
+                // {
+                //     txt: "I need to find a key somewhere",
+                //     audio: "audio/outside_locked_02.ogg"
+                // },
                 {
-                    txt: "I need to find a key somewhere",
-                    audio: "audio/outside_locked_02.ogg"
-                },
-                {
-                    txt: "Maybe I should look around",
+                    txt: "Maybe I should look around.",
                     audio: "audio/outside_locked_03.ogg"
                 }
             ], "outside_door", function() {
@@ -433,6 +437,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.inventory_add_item("Puzzle 2");
     $scope.inventory_add_item("Puzzle 3");
     $scope.inventory_add_item("Puzzle 4");
+    $scope.inventory_add_item("book");
     $scope.entrance_opened = false;
     $scope.doneAllSlots = false;
     $scope.doneSlot = [false, true, true, true, false];
