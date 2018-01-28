@@ -137,11 +137,11 @@ mainApp.controller("main_controller", function($scope) {
         } else if (new_level == "ending") {
             $scope.playMusic("audio/ending.wav");
                     setTimeout(() => jQuery( "#ending_black" ).animate({
-                        opacity: 0,
-
+                        opacity: 0
                         }, 3000), 200);
-                    setTimeout(() => jQuery( "#ending_light" ).animate({
+                    setTimeout(() => jQuery( "#ending_big" ).animate({
                         opacity: 1,
+                        top: '0px'
                         }, 6000), 1000);
             setTimeout(function() {
                 $scope.play_voice_sequence([
