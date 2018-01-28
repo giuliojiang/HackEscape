@@ -508,7 +508,7 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.entrance_opened = false;
     $scope.doneAllSlots = false;
-    $scope.doneSlot = [false, true, true, true, false];
+    $scope.doneSlot = [false, false, false, false, false];
 
     $scope.open_qtr_puzzle = function() {     
         $scope.playSound("audio/wallUpSound.wav");
