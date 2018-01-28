@@ -665,12 +665,9 @@ mainApp.controller("main_controller", function($scope) {
 
     // Phone ------------------------------------------------------------------
 
-    $scope.phone_keyup = function(keyCode) {
-        // k
-        if (keyCode == 75) {
-            console.info("CHEATY SKIP");
-            latestResults.mostLikely = { name: "key", prob: 0 };
-        }
+    window.cheat = function() {
+        console.info("CHEATY SKIP");
+        latestResults.mostLikely = { name: "key", prob: 0 };
     };
 
     // Initialization calls ---------------------------------------------------
