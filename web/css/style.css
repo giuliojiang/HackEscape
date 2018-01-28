@@ -98,7 +98,6 @@ body {
     height: 740;
     margin: auto;
 }
-
 .narr {
     position: absolute;
     font-size: 35px;
@@ -303,4 +302,11 @@ body {
     padding: 15px;
     font-size: 24px;
     width: 330px;
+}
+
+
+.best_stairs {
+    position: absolute;
+    left: 358px;
+    top: 0;
 }

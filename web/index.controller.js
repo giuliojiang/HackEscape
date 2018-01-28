@@ -17,6 +17,8 @@ mainApp.controller("main_controller", function($scope) {
         $scope.phoneMsg = '';
     };
 
+
+
     // PHone stuff
     setInterval(function() {
         $scope.latestResults = jQuery.extend({}, latestResults);
@@ -378,6 +380,14 @@ mainApp.controller("main_controller", function($scope) {
 
     // Ground Floor (CHEST PUZZLE)
     $scope.obtainedKey = false;
+
+    $scope.goUpGroundStairs = function() {
+        if (!$scope.chest_opened) {
+            alert("I wanna open that chest first.");
+            return;
+        }
+        $scope.current_level_set("qtr", "fade");
+    }
 
     $scope.chest_opened = false;
     // $scope.inventory_add_item("key");
