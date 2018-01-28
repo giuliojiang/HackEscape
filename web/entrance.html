@@ -36,14 +36,17 @@ webgazer.setGazeListener(function(data, elapsedTime) {
   }
   xprediction = data.x; //these x coordinates are relative to the viewport
   //yprediction = data.y; //these y coordinates are relative to the viewport
-  if (xprediction > 725) {
-    console.log("Right")
+  if (xprediction > 850) {
+    //console.log("Right")
     document.getElementById("light_r").style.visibility = "visible"
     document.getElementById("light_l").style.visibility = "hidden"
-  } else {
-    console.log("Left")
+  } else if (xprediction < 600) {
+    //console.log("Left")
     document.getElementById("light_l").style.visibility = "visible"
     document.getElementById("light_r").style.visibility = "hidden"
+  } else {
+    document.getElementById("light_r").style.visibility = "hidden"
+    document.getElementById("light_l").style.visibility = "hidden"
   }
 }).begin();
 </script>
