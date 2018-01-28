@@ -380,7 +380,7 @@ mainApp.controller("main_controller", function($scope) {
         return true;
     };
 
-    // Ground Floor (CHEST PUZZLE)
+    // Ground Stuff Floor (CHEST PUZZLE)
     $scope.obtainedKey = false;
 
     $scope.goUpGroundStairs = function() {
@@ -389,7 +389,7 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
         $scope.inventory_add_item("Puzzle 4")
-        $scope.current_level_set("qtr", "fade");
+        $scope.current_level_set("cr", "fade");
     }
 
     $scope.chest_opened = false;
