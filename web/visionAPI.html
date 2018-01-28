@@ -1,0 +1,167 @@
+<html>
+
+<video id="player" controls autoplay></video>
+<button id="capture">Capture</button>
+<canvas id="canvas" width=320 height=240></canvas>
+
+<button id="analyze">Analyze</button>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+  const player = document.getElementById('player');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const captureButton = document.getElementById('capture');
+  const analyzeButton = document.getElementById('analyze');
+
+  const constraints = {
+    video: true,
+  };
+
+  captureButton.addEventListener('click', () => {
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+  });
+
+  analyzeButton.addEventListener('click', () => {
+    SubmitImageForm();
+  })
+
+  // Attach the video stream to the video element and autoplay.
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+      player.srcObject = stream;
+  });
+
+function SubmitImageForm() {
+  var canvas = document.getElementById('canvas');
+  //get form data
+  var fd = new FormData();
+  var file_data = canvas.toDataURL("image/png");
+
+  //file_data = file_data.substring(file_data.indexOf(",")+1);
+  //console.log(file_data);
+  //var uriBase = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/34a4628f-9ab4-4732-8db0-9116ff433aa5/image?";
+ 
+  // Binary data file.
+  var makeBlob = function (dataURL) {
+    var BASE64_MARKER = ';base64,';
+    if (dataURL.indexOf(BASE64_MARKER) == -1) {
+      var parts = dataURL.split(',');
+      var contentType = parts[0].split(':')[1];
+      var raw = decodeURIComponent(parts[1]);
+      return new Blob([raw], {
+        type: contentType
+      });
+    }
+    var parts = dataURL.split(BASE64_MARKER);
+    var contentType = parts[0].split(':')[1];
+    var raw = window.atob(parts[1]);
+    var rawLength = raw.length;
+
+    var uInt8Array = new Uint8Array(rawLength);
+
+    for (var i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], {
+      type: contentType
+    });
+  };
+
+  file_data = makeBlob(file_data)
+
+  console.log(file_data)
+  $(function() {
+        var params = {
+            // Request parameters
+            "projectId": "34a4628f-9ab4-4732-8db0-9116ff433aa5",
+        };
+      
+        $.ajax({
+            processData: false,
+            url: "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/34a4628f-9ab4-4732-8db0-9116ff433aa5/image?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+                xhrObj.setRequestHeader("Prediction-key","7a3c2853276a42abb5bb9c709433ec3d");
+            },
+            type: "POST",
+            // Request body
+            data: file_data,
+        })
+        .done(function(data) {
+            alert("success");
+            console.log(data);
+        })
+        .fail(function(error) {
+            console.log(error);
+            alert("error");
+        });
+    });
+
+  
+  /*var params = {
+    "projectId": "34a4628f-9ab4-4732-8db0-9116ff433aa5",
+  };
+  //get emotion data
+  $.ajax({
+    beforeSend: function(xhrObj){
+      xhrObj.setRequestHeader("Content-Type","multipart/form-data");
+      xhrObj.setRequestHeader("Prediction-Key","7a3c2853276a42abb5bb9c709433ec3d");
+    },
+    type: "POST",
+    processData: false,
+    url: uriBase + $.param(params),
+    data:  file_data,
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (error) {
+      alert("There was error uploading files!");
+      console.log(error);
+      console.log(url);
+    }
+  });*/
+}
+
+/*  function processImage() {
+  // Replace the subscriptionKey string value with your valid subscription key.
+  var subscriptionKey = "7a3c2853276a42abb5bb9c709433ec3d";
+
+  var uriBase = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/34a4628f-9ab4-4732-8db0-9116ff433aa5/image";
+
+  // Display the image.
+  var sourceImage = document.getElementById("canvas").value;
+
+  // Perform the REST API call.
+  $.ajax({
+    url: uriBase,
+
+    // Request headers.
+    beforeSend: function(xhrObj){
+      xhrObj.setRequestHeader("Content-Type","application/json");
+      xhrObj.setRequestHeader("Prediction-Key","7a3c2853276a42abb5bb9c709433ec3d");
+    },
+
+    type: "POST",
+
+    // Request body.
+    data: '{"url": ' + '"' + sourceImage + '"}',
+  })
+
+  .done(function(data) {
+    // Show formatted JSON on webpage.
+    $("#responseTextArea").val(JSON.stringify(data, null, 2));
+  })
+
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    // Display error message.
+    var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
+    errorString += (jqXHR.responseText === "") ? "" : jQuery.parseJSON(jqXHR.responseText).message;
+    alert(errorString);
+  });
+};*/
+
+</script>
+</html>
