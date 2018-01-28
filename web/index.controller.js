@@ -1,7 +1,6 @@
 var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
 
 mainApp.controller("main_controller", function($scope) {
-
     // Flicker
     setInterval(function(){
         $(".flicker").css('opacity', Math.random() * 3);
@@ -44,6 +43,7 @@ mainApp.controller("main_controller", function($scope) {
 
     };
 
+
     $scope.book_from_shelf = () => {
         setTimeout(() => jQuery( ".bookshelf_book" ).animate({
                         opacity: 1,
@@ -77,7 +77,10 @@ mainApp.controller("main_controller", function($scope) {
             $scope.playMusic("audio/fire_ambiance.ogg");
         } else if (new_level == "outside") {
             $scope.playMusic("audio/outside_night.ogg");
+        } else if (new_level == "qtr") {
+            $scope.inventory_add_item("book");
         }
+        $scope.$apply();
     };
 
     // Level 1 - Intro text and narration -------------------------------------
@@ -234,7 +237,11 @@ mainApp.controller("main_controller", function($scope) {
     $scope.inventory_list = [
         "key",
         "book",
-        "phone"
+        "phone",
+        "qtr1",
+        "qtr2",
+        "qtr3",
+        "qtr4"
     ];
 
     $scope.inventory_extra = {
@@ -395,6 +402,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.lion_back = function() {
         $scope.current_level_set("outside", "fade");
     };
+
 
     // Initialization calls ---------------------------------------------------
 
