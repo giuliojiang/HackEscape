@@ -192,6 +192,33 @@ body {
     z-index: 300;
 }
 
+#capture {
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px;
+    position: absolute;
+    top: 530px;
+    left: 550px;
+    text-align: center;
+}
+.phone {
+    position: absolute;
+    top: 15;
+    left: 15;
+    z-index: 3000;
+    cursor: pointer;
+}
+#phone {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.phone:hover {
+
+}
 .inventory_item {
     cursor: pointer;
     display: inline-block;
@@ -253,5 +280,16 @@ body {
     top: 165px;
 }
 
-
+#ending_light { opacity: 0; }
 #qtr1:hover, #qtr2:hover, #qtr3:hover, #qtr4:hover {opacity: 0.4;}
+
+#scan_notif {
+    width: 340px;
+    position: absolute;
+    top: 300px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 10px;
+    font-size: 24px;
+    width: 200px;
+}

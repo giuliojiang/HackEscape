@@ -82,6 +82,14 @@ mainApp.controller("main_controller", function($scope) {
         } else if (new_level == "outside") {
             $scope.playSound("audio/walking.wav");
             // $scope.playMusic("audio/outside_night.ogg");
+        } else if (new_level == "ending") {
+            $scope.playMusic("audio/ending.wav");
+                    setTimeout(() => jQuery( "#ending_black" ).animate({
+                        opacity: 0,
+                        }, 3000), 200);
+                    setTimeout(() => jQuery( "#ending_light" ).animate({
+                        opacity: 1,
+                        }, 6000), 1000);
         } else if (new_level == "qtr") {
             console.log($scope.inventory)
         }
@@ -266,8 +274,12 @@ mainApp.controller("main_controller", function($scope) {
         //     "outside": true,
         //     "lion": true
         // };
-        return true;//!!scenes_with_inventory[$scope.current_level];
+        return !["menu"].includes($scope.current_level);
     };
+
+    $scope.is_game_scene = function() {
+        return !["menu"].includes($scope.current_level);
+    }
 
     $scope.inventory_item_click = function(item_name) {
         console.info("Player clicked on inventory item " + item_name);
@@ -292,7 +304,12 @@ mainApp.controller("main_controller", function($scope) {
     };
 
     $scope.inventory_add_item = function(item_name) {
-        $scope.playSound("audio/itemFound.wav");
+        if (item_name == "key") {
+            $scope.obtainedKey = true;
+            $scope.playSound("audio/keyPickUp.wav");
+        } else {
+            $scope.playSound("audio/itemFound.wav");
+        }
         $scope.inventory[item_name] = true;
     };
 
@@ -308,6 +325,27 @@ mainApp.controller("main_controller", function($scope) {
         }
         return true;
     };
+
+    // Ground Floor (CHEST PUZZLE)
+    $scope.obtainedKey = false;
+
+    $scope.chest_opened = false;
+    $scope.inventory_add_item("key");
+    $scope.openChest = function() {
+        if ($scope.chest_opened) {
+            alert("u already opened it m8")
+            return;
+        }
+        if (!$scope.inventory.key) {
+            alert("u got no key");
+            return;
+        }
+
+        $scope.chest_opened = true;
+        $scope.inventory_remove_item("key");
+        $scope.playSound("audio/chestOpen.wav");
+    };
+
 
     // Outside ----------------------------------------------------------------
 
@@ -354,7 +392,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.doneSlot = [false, true, true, true, false];
 
     $scope.open_qtr_puzzle = function() {     
-            $scope.playSound("audio/wallUpSound.wav");
+        $scope.playSound("audio/wallUpSound.wav");
         setTimeout(() => jQuery( "#qtr_wall" ).animate({
                         opacity: 1,
                         marginTop: "-700px"
@@ -453,4 +491,6 @@ mainApp.controller("main_controller", function($scope) {
 
     get_window_hash();
 
+    // EVERYTHING BELOW THIS LINE IS THE VISION API MICROSOFT
+    
 });

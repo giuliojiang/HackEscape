@@ -1,0 +1,138 @@
+<div class="phone">
+    <img id="phone" src="img/phone.png" />
+    
+    <video id="player" style="position: absolute; top: 30px; left: 350px;" autoplay></video>
+<div id="capture">Capture</div>
+<canvas id="canvas" style="margin-top: 5px" width=320 height=240></canvas>
+
+<button id="analyze" style="display: none">Analyze</button>
+
+<div id="scan_notif">You have successfully received a key</div>
+</div>
+
+<script>
+
+  var latestResults = {
+     mostLikely: { name: "", prob: 0 } // Empty string means unknown
+  };
+
+  var scannableItems = ["key", "water"];
+
+  function resultHandler(data) {
+     latestResults.mostLikely = getMostLikelyItem(data);
+
+     console.log("Latest Results", latestResults);
+  }
+
+  function getMostLikelyItem(data) {
+     var mostLikely = "";
+     var highestSoFar = 0.0;
+     for (var pred of data.Predictions) {
+        if (highestSoFar < pred.Probability) {
+            highestSoFar = pred.Probability;
+            mostLikely = pred.Tag;
+        }
+     }
+     console.log("mostLikely", mostLikely);
+     return { name: mostLikely, prob: highestSoFar };
+  }
+
+  const player = document.getElementById('player');
+  const canvas = document.getElementById('canvas');
+  const context = canvas.getContext('2d');
+  const captureButton = document.getElementById('capture');
+  const analyzeButton = document.getElementById('analyze');
+
+  const constraints = {
+    video: true,
+  };
+
+  captureButton.addEventListener('click', () => {
+    // Draw the video frame to the canvas.
+    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+    setTimeout(() => SubmitImageForm(), 1000);
+  });
+
+  analyzeButton.addEventListener('click', () => {
+    SubmitImageForm();
+  })
+
+  // Attach the video stream to the video element and autoplay.
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+      player.srcObject = stream;
+  });
+
+function SubmitImageForm() {
+  var canvas = document.getElementById('canvas');
+  //get form data
+  var fd = new FormData();
+  var file_data = canvas.toDataURL("image/png");
+
+  //file_data = file_data.substring(file_data.indexOf(",")+1);
+  //console.log(file_data);
+  //var uriBase = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.1/Prediction/34a4628f-9ab4-4732-8db0-9116ff433aa5/image?";
+ 
+  // Binary data file.
+  var makeBlob = function (dataURL) {
+    var BASE64_MARKER = ';base64,';
+    if (dataURL.indexOf(BASE64_MARKER) == -1) {
+      var parts = dataURL.split(',');
+      var contentType = parts[0].split(':')[1];
+      var raw = decodeURIComponent(parts[1]);
+      return new Blob([raw], {
+        type: contentType
+      });
+    }
+    var parts = dataURL.split(BASE64_MARKER);
+    var contentType = parts[0].split(':')[1];
+    var raw = window.atob(parts[1]);
+    var rawLength = raw.length;
+
+    var uInt8Array = new Uint8Array(rawLength);
+
+    for (var i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i);
+    }
+
+    return new Blob([uInt8Array], {
+      type: contentType
+    });
+  };
+
+  file_data = makeBlob(file_data)
+
+  console.log(file_data)
+  $(function() {
+        var params = {
+            // Request parameters
+            "projectId": "34a4628f-9ab4-4732-8db0-9116ff433aa5",
+        };
+      
+        $.ajax({
+            processData: false,
+            url: "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/34a4628f-9ab4-4732-8db0-9116ff433aa5/image?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+                xhrObj.setRequestHeader("Prediction-key","7a3c2853276a42abb5bb9c709433ec3d");
+            },
+            type: "POST",
+            // Request body
+            data: file_data,
+        })
+        .done(function(data) {
+            // alert("success");
+            console.log("SUCCESS");
+            console.log(data);
+            resultHandler(data);
+        })
+        .fail(function(error) {
+            console.log(error);
+            // alert("error");
+        });
+    });
+}
+
+
+</script>
