@@ -390,7 +390,7 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
         if (!$scope.inventory.key) {
-            playSound("audio/outside_locked_02.ogg");
+            playSound("audio/chest_need_key.ogg");
             return;
         }
 
