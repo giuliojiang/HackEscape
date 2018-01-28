@@ -324,11 +324,11 @@ mainApp.controller("main_controller", function($scope) {
         //     "outside": true,
         //     "lion": true
         // };
-        return !["menu"].includes($scope.current_level);
+        return $scope.is_game_scene();
     };
 
     $scope.is_game_scene = function() {
-        return !["menu"].includes($scope.current_level);
+        return !["menu", "level1"].includes($scope.current_level);
     }
 
     $scope.inventory_item_click = function(item_name) {
@@ -387,7 +387,7 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
         if (!$scope.inventory.key) {
-            alert("u got no key");
+            playSound("audio/outside_locked_02.ogg");
             return;
         }
 
@@ -483,6 +483,9 @@ mainApp.controller("main_controller", function($scope) {
                 height: "437px",
                 marginLeft: "130px"
                 }, 1500), 200);
+
+
+        setTimeout(() => { $scope.current_level_set("ground"); $scope.$apply() }, 1600);
     };
 
     $scope.outside_lion_click = function() {
@@ -519,15 +522,19 @@ mainApp.controller("main_controller", function($scope) {
             return;
         }
 
-            setTimeout(() => jQuery( "#lion_book" ).animate({
-                        opacity: 1,
-                        marginLeft: "+=70"
-                        }, 1500), 200);
+
         if ($scope.inventory_extra.selected == "book") {
             $scope.lion_status.active = true;
             $scope.inventory_remove_item("book");
             $scope.playSound("audio/book_sliding.ogg");
             setTimeout(() => $scope.playSound("audio/doorUnlock.wav"), 2000);
+
+
+            setTimeout(() => jQuery( "#lion_book" ).animate({
+                        opacity: 1,
+                        marginLeft: "+=70"
+                        }, 1500), 200);
+            setTimeout(() => { $scope.current_level_set("entrance", "fade"); $scope.$apply(); }, 1800);
         } else {
             $scope.play_lion_voice();
         }
