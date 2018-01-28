@@ -84,12 +84,21 @@ body {
 
 .container {
     z-index: 0;
-    margin: auto;
     width: 1300px;
     /*background-color: black;*/
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 740px;
 }
+
+#most_outer_container {
+    position: relative;
+    width: 1300px;
+    height: 740;
+    margin: auto;
+}
+
 
 .intro_big_text {
     position: absolute;
@@ -117,7 +126,6 @@ body {
     height: 740px;
 }
 .mid {
-
     z-index: 500;
     position: absolute;
     width: 1300px;
@@ -130,7 +138,120 @@ body {
     left: 0;
     z-index: 800;
 }
+.hover_obj {
+    cursor: pointer;
+}
 /* Bookshelf Stuff */
 .bookshelf {
 
 }
+.bookshelf_book_hover, .hover_obj {
+    z-index: 505;
+    position: absolute;
+    /*display: none;*/
+}
+
+.no_ease {
+  transition: all 0s ease;
+}
+.bookshelf_book {
+    left: 360px;
+    top: 233px;
+}
+#book_qtower {
+    top: 176px;
+    left: 916px;
+}
+#lion_white {
+    top: 565px;
+    left: 300px;
+}
+#lion_white:hover {
+    opacity: 0.3;
+}
+#door_white {
+    left: 714px;
+    top: 407px;
+}
+#door_white:hover {
+    opacity: 0.3;
+}
+
+#lion_btm_white {
+    left: 400px;
+    top: 469px;
+}
+#lion_btm_white:hover {
+    opacity: 0.3;
+}
+
+.inventory {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 300;
+}
+
+.inventory_item {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+}
+
+.inventory_item:hover {
+    /*opacity: 0.9;*/
+}
+
+.inventory_item_present {
+    color: green;
+}
+
+.inventory_item_missing {
+    color: red;
+    display: none;
+}
+
+.inventory_item_highlight {
+    border: 1px solid white;
+}
+
+#lion_book {
+    left: 312px;
+    top: 477px;
+}
+
+
+#entrance_door {
+    left: 490px;
+    top: 289px;
+    z-index: 805;
+}
+#left_door {
+    left: 490px;
+    top: 289px;
+}
+#right_door {
+    left: 620px;
+    top: 289px;
+}
+
+
+#qtr1 {
+    left: 515px;
+    top: 41px;
+}
+#qtr2 {
+    left: 695px;
+    top: 41px;
+}
+#qtr3 {
+    left: 515px;
+    top: 165px;
+}
+#qtr4 {
+    left: 695px;
+    top: 165px;
+}
+
+
+#qtr1:hover, #qtr2:hover, #qtr3:hover, #qtr4:hover {opacity: 0.4;}

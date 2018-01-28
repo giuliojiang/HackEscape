@@ -1,11 +1,29 @@
-var mainApp = angular.module("mainApp", []);
+var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
 
 mainApp.controller("main_controller", function($scope) {
-
     // Flicker
     setInterval(function(){
-        $(".flicker").css('opacity', Math.random() * 2);
+        $(".flicker").css('opacity', Math.random() * 3);
     }, 200);
+
+    setInterval(function(){
+        $(".flickerBright").css('opacity', Math.random() * 4);
+    }, 200);
+
+    $scope.hoverIn = function(){
+        this.hoverEdit = true;
+    };
+
+    $scope.hoverOut = function(){
+        this.hoverEdit = false;
+    };
+
+    // setTimeout(
+    // $(".hover_obj").mouseover(function() {
+    //     alert();
+    //     $(this).attr("src", $(this).attr("src").replace('.png', '_hover.png'));
+    // }), 200);
+
 
     // Current level being shown ----------------------------------------------
     $scope.current_level = 'menu';
@@ -29,6 +47,25 @@ mainApp.controller("main_controller", function($scope) {
 
     };
 
+
+    $scope.book_from_shelf = () => {
+        setTimeout(() => jQuery( ".bookshelf_book" ).animate({
+                        opacity: 1,
+                        marginLeft: "-=120"
+                        }, 1500), 200);
+        setTimeout(() => {
+            console.info("switching to menu");
+            $scope.current_level_set("bookshelf_open", "fade");
+            $scope.$apply();
+        }, 1800)
+
+        // Play sliding sound
+        $scope.playSound("audio/book_sliding.ogg");
+
+        // Add book to player's inventory
+        $scope.inventory_add_item("book");
+    };
+
     $scope.current_level_set = function(new_level, transition_type) {
         console.log("Scene change to: " + new_level)
         if (transition_type == 'fade') {
@@ -38,21 +75,15 @@ mainApp.controller("main_controller", function($scope) {
         $scope.current_level = new_level;
 
         if (new_level == 'level1') {
-            $scope.playMusic("audio/intro_wind.ogg");
+            // $scope.playMusic("audio/intro_wind.ogg");
             $scope.intro_start_slideshow();
-        } else if (new_level == 'bookshelf') {
-            setTimeout(() => jQuery( ".bookshelf_book" ).animate({
-                            opacity: 1,
-                            marginLeft: "-=120"
-                            }, 1500), 200);
-            setTimeout(() => {
-                console.info("switching to menu");
-                $scope.current_level_set("bookshelf_open", "fade");
-                $scope.$apply();
-            }, 1800)
-            
         } else if (new_level == 'bookshelf_open') {
-            $scope.playMusic("audio/fire_ambiance.ogg");
+            $scope.playSound("audio/bookOpen.wav");
+        } else if (new_level == "outside") {
+            $scope.playSound("audio/walking.wav");
+            // $scope.playMusic("audio/outside_night.ogg");
+        } else if (new_level == "qtr") {
+            console.log($scope.inventory)
         }
     };
 
@@ -60,7 +91,9 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.narration = {
         intro: "",
-        bookshelf: ""
+        bookshelf: "",
+        outside_door: "",
+        lion: ""
     };
 
     $scope.intro_text_set = [
@@ -126,7 +159,9 @@ mainApp.controller("main_controller", function($scope) {
         document.body.appendChild(audio_element);
         // OnEnded listener
         audio_element.onended = function() {
-            onEnd();
+            if (onEnd) {
+                onEnd();
+            }
             audio_element.pause();
             audio_element.remove();
         };
@@ -135,7 +170,12 @@ mainApp.controller("main_controller", function($scope) {
     };
 
     $scope.music_track = null;
+    $scope.music_track_playing_name = null;
     $scope.playMusic = function(srcPath) {
+        // If we are already playing this, keep playing it
+        if (srcPath == $scope.music_track_playing_name) {
+            return;
+        }
         // Stop current playing music
         if ($scope.music_track) {
             // Fade out
@@ -150,22 +190,37 @@ mainApp.controller("main_controller", function($scope) {
             });
             return;
         }
+        $scope.music_track_playing_name = srcPath;
         $scope.music_track = document.createElement("audio");
         $scope.music_track.id = "music_element";
         $scope.music_track.autostart = "0";
         $scope.music_track.src = srcPath;
         document.body.appendChild($scope.music_track);
         $scope.music_track.volume = 0;
+        // Repetition play
+        $scope.music_track.onended = function() {
+            $scope.music_track.play();
+        };
         $scope.music_track.play();
         $($scope.music_track).animate({volume: 1}, 500, function() {
         });
     };
 
+    // MAIN BACKGROUND MUSIC BGM
+    $scope.playMusic("audio/bgm.mp3");
+
     // Booshelf Open Voice ----------------------------------------------------
 
     $scope.bookshelf_open_tower_voice_playing = false;
 
+    $scope.bookshelf_open_data = {
+        img: "img/qtower_black.png"
+    };
+
     $scope.bookshelf_open_tower_voice = function() {
+        $scope.bookshelf_open_data.img = 'img/queenstower_hover.png';
+        console.info("imgsrc2 is now " + $scope.imgsrc2);
+
         console.info("$scope.bookshelf_open_tower_voice");
         if ($scope.bookshelf_open_tower_voice_playing) {
             return;
@@ -175,6 +230,224 @@ mainApp.controller("main_controller", function($scope) {
             $scope.bookshelf_open_tower_voice_playing = false;
         });
     };
+
+    $scope.bookshelf_open_mouseout = function() {
+        $scope.bookshelf_open_data.img = "img/qtower_black.png";
+    };
+
+    $scope.bookshelf_open_click_tower = function() {
+        $scope.current_level_set("outside", "fade");
+    };
+
+    // Player's inventory -----------------------------------------------------
+
+    $scope.inventory_list = [
+        "key",
+        "book",
+        "phone",
+        "Puzzle 1",
+        "Puzzle 2",
+        "Puzzle 3",
+        "Puzzle 4"
+    ];
+
+    $scope.inventory_extra = {
+        selected: null
+    };
+
+    $scope.inventory = {};
+    for (var i = 0; i < $scope.inventory_list.length; i++) {
+        $scope.inventory[$scope.inventory_list[i]] = false;
+    }
+
+    $scope.inventory_is_visible = function() {
+        // var scenes_with_inventory = {
+        //     "bookshelf_open": true,
+        //     "outside": true,
+        //     "lion": true
+        // };
+        return true;//!!scenes_with_inventory[$scope.current_level];
+    };
+
+    $scope.inventory_item_click = function(item_name) {
+        console.info("Player clicked on inventory item " + item_name);
+        if ($scope.inventory_extra.selected == item_name) {
+            $scope.inventory_extra.selected = null;
+        } else {
+            $scope.inventory_extra.selected = item_name;
+        }
+    };
+
+    $scope.inventory_get_class = function(item_name) {
+        if ($scope.inventory[item_name]) {
+            var cls = "inventory_item_present";
+            if ($scope.inventory_extra.selected == item_name) {
+                cls += " inventory_item_highlight";
+            }
+            return cls;
+        } else {
+            // Item not present
+            return "inventory_item_missing";
+        }
+    };
+
+    $scope.inventory_add_item = function(item_name) {
+        $scope.playSound("audio/itemFound.wav");
+        $scope.inventory[item_name] = true;
+    };
+
+    $scope.inventory_remove_item = function(item_name) {
+        $scope.inventory[item_name] = false;
+    };
+
+    $scope.inventory_empty = function() {
+        for (var i = 0; i < $scope.inventory_list.length; i++) {
+            if ($scope.inventory[$scope.inventory_list[i]]) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    // Outside ----------------------------------------------------------------
+
+    $scope.outside_door_click_playing = false;
+
+    $scope.outside_door_click = function() {
+        if ($scope.inventory.key) {
+            // Player has the key
+            console.info("Player has the key. Opening doors...");
+        } else {
+            // Player doesn't have the keys
+            if ($scope.outside_door_click_playing) {
+                console.info("Already playing");
+                return;
+            }
+            $scope.outside_door_click_playing = true;
+            $scope.play_voice_sequence([
+                {
+                    txt: "It's locked",
+                    audio: "audio/outside_locked_01.ogg"
+                },
+                {
+                    txt: "I need to find a key somewhere",
+                    audio: "audio/outside_locked_02.ogg"
+                },
+                {
+                    txt: "Maybe I should look around",
+                    audio: "audio/outside_locked_03.ogg"
+                }
+            ], "outside_door", function() {
+                $scope.outside_door_click_playing = false;
+            });
+        }
+    };
+
+
+    // QTR STUFF
+    $scope.inventory_add_item("Puzzle 1");
+    $scope.inventory_add_item("Puzzle 2");
+    $scope.inventory_add_item("Puzzle 3");
+    $scope.inventory_add_item("Puzzle 4");
+    $scope.entrance_opened = false;
+    $scope.doneAllSlots = false;
+    $scope.doneSlot = [false, true, true, true, false];
+
+    $scope.open_qtr_puzzle = function() {     
+            $scope.playSound("audio/wallUpSound.wav");
+        setTimeout(() => jQuery( "#qtr_wall" ).animate({
+                        opacity: 1,
+                        marginTop: "-700px"
+                        }, 3000), 400);
+    }
+
+    $scope.qtrClick = function(slot) {
+        if ($scope.doneSlot[slot]) return;
+        if ($scope.inventory_extra.selected != "Puzzle "+slot) {
+            alert("This puzzle piece doesn't quite fit there. I should try somewhere else.");
+            return;
+        }
+
+        $scope.playSound("audio/puzzleOnWall.wav");
+        $scope.inventory_remove_item("Puzzle "+slot);
+        $scope.doneSlot[slot] = true;
+        console.log("Slot status:", $scope.doneSlot);
+        $scope.doneAllSlots = $scope.doneSlot[1] && $scope.doneSlot[2] && $scope.doneSlot[3] && $scope.doneSlot[4];
+
+        if ($scope.doneAllSlots) {
+            $scope.open_qtr_puzzle();
+        }
+    };
+
+    $scope.open_entrance = function() {
+        if ($scope.entrance_opened) return; // Already opened so dont reopen
+        $scope.entrance_opened = true;
+        $scope.playSound("audio/light.wav");
+        setTimeout(() => $( "#left_door" ).animate({
+                opacity: 1,
+                width: "0px",
+                height: "437px"
+                }, 1500), 200);
+        setTimeout(() => $( "#right_door" ).animate({
+                opacity: 1,
+                width: "0px",
+                height: "437px",
+                marginLeft: "130px"
+                }, 1500), 200);
+    };
+
+    $scope.outside_lion_click = function() {
+        $scope.current_level_set("lion", "fade");
+    };
+
+    // Lion -------------------------------------------------------------------
+
+    $scope.lion_status = {
+        active: false
+    };
+
+    $scope.lion_voice_playing = false;
+
+    $scope.play_lion_voice = function() {
+        if ($scope.lion_voice_playing) {
+            console.info("Already playing");
+            return;
+        }
+        $scope.lion_voice_playing = true;
+        $scope.play_voice_sequence([
+            {
+                txt: "Something is missing here",
+                audio: "audio/lion_01.ogg"
+            }
+        ], "lion", function() {
+            $scope.lion_voice_playing = false;
+        });
+    };
+
+    $scope.lion_click = function() {
+        if ($scope.lion_status.active) {
+            console.info("Lion is already active");
+            return;
+        }
+
+            setTimeout(() => jQuery( "#lion_book" ).animate({
+                        opacity: 1,
+                        marginLeft: "+=70"
+                        }, 1500), 200);
+        if ($scope.inventory_extra.selected == "book") {
+            $scope.lion_status.active = true;
+            $scope.inventory_remove_item("book");
+            $scope.playSound("audio/book_sliding.ogg");
+            setTimeout(() => $scope.playSound("audio/doorUnlock.wav"), 2000);
+        } else {
+            $scope.play_lion_voice();
+        }
+    };
+
+    $scope.lion_back = function() {
+        $scope.current_level_set("outside", "fade");
+    };
+
 
     // Initialization calls ---------------------------------------------------
 

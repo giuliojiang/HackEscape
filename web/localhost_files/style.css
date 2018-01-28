@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+#black {
+    background-color: black;
+    z-index: 10000;
+    position: fixed;
+    height: 1920px;
+    display: none;
+    width: 100%;
+}
+
+body {
+    font-family: 'main';
+    border: 0;
+    background-color: black;
+    color: white;
+}
+.menu_btn {
+    position: absolute;
+    bottom: 45px;
+    font-size: 40px;
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.menu_btn:hover {
+    font-size: 45px;
+    opacity: 1;
+}
+.menu_options {
+    left: 35px;
+}
+.menu_about {
+    right: 35px;
+}
+.menu_play {
+    left: 490px;
+}
+
+.menu_container div {
+    margin: 20px;
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    cursor: pointer;
+}
+.menu_container div:hover {
+    font-size: 35px;
+}
+
+.title {
+    width: 100%;
+    font-size: 80px;
+    padding-top: 200px;
+    text-align: center; 
+}
+.flicker {
+  transition: all 0.5s ease;
+}
+.flicker_black {
+    width: 1920%;
+    height: 740px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.menu_bg {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+}
+
+.container {
+    z-index: 0;
+    margin: auto;
+    width: 1300px;
+    /*background-color: black;*/
+    position: relative;
+    height: 740px;
+}
+
+.intro_big_text {
+    position: absolute;
+    font-size: 80px;
+    top: 300px;
+    left: 500px;
+}
+
+/* Helper CSS methods */
+.size {
+    width: 1300px;
+    height: 740px;
+}
+.bg {
+    position: absolute;
+    z-index: -1000;
+    width: 1300px;
+    height: 740px;
+}
+.top {
+    pointer-events: none;
+    position: absolute;
+    z-index: 1000;
+    width: 1300px;
+    height: 740px;
+}
+.mid {
+    z-index: 500;
+    position: absolute;
+    width: 1300px;
+    height: 740px;
+}
+.obj {
+    cursor: pointer;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 800;
+}
+.hover_obj {
+    cursor: pointer;
+}
+/* Bookshelf Stuff */
+.bookshelf {
+
+}
+.bookshelf_book_hover, .hover_obj {
+    z-index: 505;
+    position: absolute;
+    /*display: none;*/
+}
+
+.no_ease {
+  transition: all 0s ease;
+}
+.bookshelf_book {
+    left: 360px;
+    top: 233px;
+}
+#book_qtower {
+    top: 176px;
+    left: 916px;
+}
+#lion_white {
+    top: 565px;
+    left: 300px;
+}
+#lion_white:hover {
+    opacity: 0.3;
+}
+#door_white {
+    left: 714px;
+    top: 407px;
+}
+#door_white:hover {
+    opacity: 0.3;
+}
+
+#lion_btm_white {
+    left: 400px;
+    top: 469px;
+}
+#lion_btm_white:hover {
+    opacity: 0.3;
+}
+
+.inventory {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.inventory_item {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid white;
+}
+.inventory_item_present {
+    color: green;
+}
+
+.inventory_item_missing {
+    color: red;
+}

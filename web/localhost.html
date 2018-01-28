@@ -1,0 +1,110 @@
+
+<!-- saved from url=(0049)http://localhost/hackescape/web/#!#bookshelf_open -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+        <script type="text/javascript" src="./localhost_files/jquery-3.2.1.min.js"></script>
+
+        <link rel="stylesheet" href="./localhost_files/style.css">
+        <link rel="stylesheet" href="./localhost_files/fonts.css">
+        <link rel="stylesheet" href="./localhost_files/tt.css">
+
+        <!-- Angular -->
+        <script src="./localhost_files/angular.min.js"></script>
+        <!-- Controller -->
+        <script src="./localhost_files/index.controller.js"></script>
+        <script src="./localhost_files/header.controller.js"></script>
+        <script src="./localhost_files/tt.js"></script>
+
+       <!-- AngularJS Material CSS now available via Google CDN; version 1.1.6 used here -->
+  <!--       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.css">    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.6/angular-material.min.js"></script>
+ -->
+
+    </head>
+    <body ng-app="mainApp" ng-controller="main_controller" class="ng-scope">
+        <div id="black"></div>
+        <!-- ngInclude: 'menu.html' --><div class="container ng-scope ng-hide" ng-include="&#39;menu.html&#39;" ng-show="current_level == &#39;menu&#39;"><div class="ng-scope">
+    <img class="menu_bg flicker" src="./localhost_files/menu.png" style="opacity: 0.974342;">
+    <!-- <div class="flicker flicker_black"></div> -->
+    <!-- <div class="title">Secrets</div> -->
+
+    <div class="menu_options menu_btn">Options</div>
+    <div ng-click="current_level_set(&#39;level1&#39;, &#39;fade&#39;)" class="menu_play menu_btn">Play Game</div>
+    <div class="menu_about menu_btn">About</div>
+
+</div>
+</div>
+        <!-- ngInclude: 'bookshelf.html' --><div class="container ng-scope ng-hide" ng-include="&#39;bookshelf.html&#39;" ng-show="current_level == &#39;bookshelf&#39;"><div class="ng-scope">
+    <img class="top" src="./localhost_files/bookshelf_top.png">
+    <!-- <img class="bookshelf_book hover_obj" src="img/bookshelf_book.png" id="bookshelf_book"/> -->
+
+    <img class="bookshelf_book hover_obj" src="./localhost_files/bookshelf_book.png" id="bookshelf_book" ng-init="imgsrc=&#39;img/bookshelf_book.png&#39;" ng-mouseover="imgsrc=&#39;img/bookshelf_book_hover.png&#39;" ng-mouseout="imgsrc=&#39;img/bookshelf_book.png&#39;" ng-click="book_from_shelf()">
+    <!-- <img class="mid bookshelf_book no_ease" src="img/bookshelf_book_hover.png" id="bookshelf_book_open"  ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" style="opacity: {{hoverEdit ? 1 : 0}}; " /> -->
+    <img class="bg" src="./localhost_files/bookshelf_bg.png">
+
+</div>
+</div>
+        <!-- ngInclude: 'bookshelf_open.html' --><div class="container ng-scope" ng-include="&#39;bookshelf_open.html&#39;" ng-show="current_level == &#39;bookshelf_open&#39;"><div class="ng-scope">
+    <img class="top" src="./localhost_files/bookshelf_opened.png">
+    <img class="mid" src="./localhost_files/black.png" style="opacity: 0.7">
+    <img class="bg" src="./localhost_files/bookshelf_bg.png">
+    <img id="book_qtower" class="obj" src="./localhost_files/qtower_black.png" ng-mouseout="bookshelf_open_mouseout()" ng-mouseover="bookshelf_open_tower_voice()" ng-click="bookshelf_open_click_tower()" style="z-index: 1200">
+</div>
+</div>
+        <!-- ngInclude: 'level1.html' --><div class="container ng-scope ng-hide" ng-include="&#39;level1.html&#39;" ng-show="current_level == &#39;level1&#39;"><div class="ng-scope">
+
+    <div class="intro_big_text ng-binding">
+        
+    </div>
+
+</div>
+</div>
+        <!-- ngInclude: 'level2.html' --><div class="container ng-scope ng-hide" ng-include="&#39;level2.html&#39;" ng-show="current_level == &#39;level2&#39;"><div class="ng-scope">
+
+    <p>Level2</p>
+
+</div>
+</div>
+        <!-- ngInclude: 'outside.html' --><div class="container ng-scope ng-hide" ng-include="&#39;outside.html&#39;" ng-show="current_level == &#39;outside&#39;"><div class="ng-scope">
+
+    <img class="bg" src="./localhost_files/queenstower.png">
+    <!--TODO - This scene needs as background the outdoors scene at night-->
+
+    <!--TODO replace this with the clickable door-->
+    <!-- <p ng-click="outside_door_click()">Door</p> -->
+
+    <img id="lion_white" class="obj" src="./localhost_files/lion_blank.png" ng-init="imgsrc3=&#39;img/lion_blank.png&#39;" ng-mouseover="imgsrc3=&#39;img/lion_white.png&#39;" ng-mouseout="imgsrc3=&#39;img/lion_blank.png&#39;" style="z-index: 1200" ng-click="outside_lion_click()">
+
+
+    <img id="door_white" class="obj" src="./localhost_files/door_blank.png" ng-init="imgsrc4=&#39;img/door_blank.png&#39;" ng-mouseover="imgsrc4=&#39;img/door_white.png&#39;" ng-mouseout="imgsrc4=&#39;img/door_blank.png&#39;" style="z-index: 1200" ng-click="outside_door_click()">
+    
+    <!--subtitles-->
+    <p class="ng-binding"></p>
+
+
+
+</div>
+</div>
+        <!-- ngInclude: 'lion.html' --><div class="container ng-scope ng-hide" ng-include="&#39;lion.html&#39;" ng-show="current_level == &#39;lion&#39;"><div class="ng-scope">
+
+    <!--TODO - This scene needs as background the outdoors scene at night-->
+
+    <img id="lion_btm_white" class="obj" src="./localhost_files/lion_btm_blank.png" ng-init="imgsrc5=&#39;img/lion_btm_blank.png&#39;" ng-mouseover="imgsrc5=&#39;img/lion_btm_white.png&#39;" ng-mouseout="imgsrc5=&#39;img/lion_btm_blank.png&#39;" style="z-index: 1200" ng-click="lion_click()">
+
+    <img class="bg" src="./localhost_files/lion_bg.png">
+
+    <p class="ng-binding">Narr: </p>
+    <!--subtitles-->
+
+    <p ng-click="lion_back()">Back to outside</p>
+
+</div>
+</div>
+
+        <!--Inventory-->
+        <!-- ngInclude: 'inventory.html' --><div ng-include="&#39;inventory.html&#39;" ng-show="inventory_is_visible()" class="ng-scope"><div class="inventory ng-scope">
+    <p>Your Inventory</p>
+    <!-- ngRepeat: a_item in inventory_list --><!-- tooltips: --><tooltip tooltip-template="{{a_item}}" class="tooltips _top _steady _ready"><tip-cont><div ng-repeat="a_item in inventory_list" class="inventory_item_missing inventory_item" ng-click="inventory_item_click(a_item)" title="key" tooltip-template="key">key</div></tip-cont><tip class=""><tip-tip><span class="close-button" style="display: none;">×</span>key</tip-tip><tip-arrow></tip-arrow></tip></tooltip><!-- end ngRepeat: a_item in inventory_list --><!-- tooltips: --><tooltip tooltip-template="{{a_item}}" class="tooltips _top _steady _ready"><tip-cont><div ng-repeat="a_item in inventory_list" class="inventory_item_missing inventory_item" ng-click="inventory_item_click(a_item)" title="book" tooltip-template="book">book</div></tip-cont><tip class=""><tip-tip><span class="close-button" style="display: none;">×</span>book</tip-tip><tip-arrow></tip-arrow></tip></tooltip><!-- end ngRepeat: a_item in inventory_list --><!-- tooltips: --><tooltip tooltip-template="{{a_item}}" class="tooltips _top _steady _ready"><tip-cont><div ng-repeat="a_item in inventory_list" class="inventory_item_missing inventory_item" ng-click="inventory_item_click(a_item)" title="phone" tooltip-template="phone">phone</div></tip-cont><tip class=""><tip-tip><span class="close-button" style="display: none;">×</span>phone</tip-tip><tip-arrow></tip-arrow></tip></tooltip><!-- end ngRepeat: a_item in inventory_list -->
+</div>
+</div>
+    
+
+<audio id="music_element" src="audio/fire_ambiance.ogg"></audio></body></html>

@@ -1,0 +1,17 @@
+<div>
+
+    <img class="top" src="img/lion_cover.png" />
+    <!--TODO - This scene needs as background the outdoors scene at night-->
+
+    <img id="lion_btm_white" class="obj" src="{{imgsrc5}}" ng-hide="lion_status.active" ng-init="imgsrc5='img/lion_btm_blank.png'" ng-mouseover="imgsrc5='img/lion_btm_white.png'" ng-mouseout="imgsrc5='img/lion_btm_blank.png'" style="z-index: 1200" ng-click="lion_click()" />
+
+
+    <img class="bg" src="img/lion_bg.png" />
+    <img id="lion_book" class="obj" src="img/lion_book.png" ng-show="lion_status.active" />
+
+    <p>Narr: {{narration.lion}}</p>
+    <!--subtitles-->
+
+    <p ng-click="lion_back()">Back to outside</p>
+
+</div>
