@@ -395,11 +395,22 @@ mainApp.controller("main_controller", function($scope) {
         $scope.current_level_set("qtr", "fade");
     }
 
+    $scope.playing.chest_already_open = false;
+    $scope.play_chest_already_open_voice = function() {
+        if ($scope.playing.chest_already_open) {
+            return;
+        }
+        $scope.playing.chest_already_open = true;
+        $scope.playSound("audio/chest_already_open.ogg", function() {
+            $scope.playing.chest_already_open = false
+        });
+    };
+
     $scope.chest_opened = false;
     // $scope.inventory_add_item("key");
     $scope.openChest = function() {
         if ($scope.chest_opened) {
-            alert("u already opened it m8")
+            $scope.play_chest_already_open_voice
             return;
         }
         if (!$scope.inventory.key) {
