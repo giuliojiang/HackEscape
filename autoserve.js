@@ -39,7 +39,7 @@ var server_proc;
 
 var start_server = function() {
     console.info("Running HTTP server");
-    server_proc = spawn(path.join(__dirname, "serve_root.sh"), []);
+    server_proc = spawn(path.join(__dirname, "nodejs_https.js"), []);
 
     server_proc.stdout.on('data', (data) => {
         var splt = data.toString().split('\n');
