@@ -158,6 +158,30 @@ mainApp.controller("main_controller", function($scope) {
             }, 2000);
         } else if (new_level == "qtr") {
             console.log($scope.inventory)
+        } else if (new_level == "cr") {
+            setTimeout(function() {
+                $scope.play_voice_sequence([
+                    {
+                        txt: "",
+                        audio: "audio/clock1.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/clock2.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/clock3.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/clock4.ogg"
+                    }
+                ], "nothing", function() {
+                    console.info("Clock voice lines ended");
+                });
+            }, 1500);
+
         }
     };
 
@@ -397,9 +421,9 @@ mainApp.controller("main_controller", function($scope) {
         if ($scope.playing.chest_need_open) {
             return;
         }
-        $scope.play_chest_need_open = true;
+        $scope.playing.chest_need_open = true;
         $scope.playSound("audio/chest_need_to_look.ogg", function() {
-            $scope.play_chest_need_open = false;
+            $scope.playing.chest_need_open = false;
         });
     };
 
