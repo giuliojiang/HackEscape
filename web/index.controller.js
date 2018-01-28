@@ -142,6 +142,20 @@ mainApp.controller("main_controller", function($scope) {
                     setTimeout(() => jQuery( "#ending_light" ).animate({
                         opacity: 1,
                         }, 6000), 1000);
+            setTimeout(function() {
+                $scope.play_voice_sequence([
+                    {
+                        txt: "",
+                        audio: "audio/treasure1.ogg"
+                    },
+                    {
+                        txt: "",
+                        audio: "audio/treasure2.ogg"
+                    }
+                ], "nothing", function() {
+                    console.info("Final voice lines completed");
+                });
+            }, 2000);
         } else if (new_level == "qtr") {
             console.log($scope.inventory)
         }
@@ -153,7 +167,8 @@ mainApp.controller("main_controller", function($scope) {
         intro: "",
         bookshelf: "",
         outside_door: "",
-        lion: ""
+        lion: "",
+        nothing: ""
     };
 
     $scope.intro_text_set = [
