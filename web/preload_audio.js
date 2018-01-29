@@ -46,5 +46,5 @@ function init() {
     
 // we start preloading all the audio files
 for (var i in audioFiles) {
-    preloadAudio(audioFiles[i]);
+    preloadAudio("audio/" + audioFiles[i]);
 }
