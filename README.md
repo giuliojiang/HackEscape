@@ -6,6 +6,10 @@ Built at IC Hack 18
 
 https://queenstreasure.co.uk/
 
+or
+
+https://hackescape.westeurope.cloudapp.azure.com/
+
 # Known issues
 
 Only works on Chrome and Chromium.
