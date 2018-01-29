@@ -15,9 +15,10 @@ function loadedAudio() {
     // this will be called every time an audio file is loaded
     // we keep track of the loaded files vs the requested files
     loaded++;
+    console.log("LOADED:  " + loaded + " vs " + audioFiles.length);
     if (loaded == audioFiles.length){
-        // all have loaded
-        init();
+        $("#loadingScene").hide();
+        $("#most_outer_container").show();
     }
 }
     
@@ -27,24 +28,8 @@ function play(index) {
     player.play();
 }
     
-function init() {
-    // do your stuff here, audio has been loaded
-    // for example, play all files one after the other
-    var i = 0;
-    // once the player ends, play the next one
-    player.onended = function() {
-        i++;
-        if (i >= audioFiles.length) {
-            // end 
-            return;
-        }
-        play(i);
-    };
-    // play the first file
-    play(i);
-}
     
 // we start preloading all the audio files
-for (var i in audioFiles) {
-    preloadAudio("audio/" + audioFiles[i]);
+for (var af of audioFiles) {
+    preloadAudio("audio/" + af);
 }
