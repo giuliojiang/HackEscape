@@ -30,8 +30,9 @@ window.addEventListener('popstate', function () {
 
     </head>
     <body ng-app="mainApp" ng-controller="main_controller">
-        <div id="loadingScene" style="text-align: center; margin-top: 300px; font-size: 80px;">
-            Loading, please wait...
+        <div id="loadingScene" style="text-align: center; margin-top: 270px; font-size: 80px;">
+            Loading, please wait...<br />
+            <span id="loadPerc">0</span>%
         </div>
         <div id="most_outer_container" style="display: none;">
             <div ng-include="'phone.html'" ng-show="is_game_scene() && current_level != 'ending'"></div>

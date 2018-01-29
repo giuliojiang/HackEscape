@@ -15,7 +15,8 @@ function loadedAudio() {
     // this will be called every time an audio file is loaded
     // we keep track of the loaded files vs the requested files
     loaded++;
-    console.log("LOADED:  " + loaded + " vs " + audioFiles.length);
+    $("#loadPerc").html(Math.floor(100 * loaded/audioFiles.length));
+    console.log("Audio preloading: " + loaded + " vs " + audioFiles.length);
     if (loaded == audioFiles.length){
         $("#loadingScene").hide();
         $("#most_outer_container").show();
@@ -25,7 +26,7 @@ function loadedAudio() {
 setTimeout(() => {
         $("#loadingScene").hide();
         $("#most_outer_container").show();
-    }, 10000); // incase loading fails
+    }, 8000); // incase preloading fails or taking too long
     
 var preloadPlayer = document.getElementById('preloadPlayer');
 function play(index) {
