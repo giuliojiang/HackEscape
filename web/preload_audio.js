@@ -21,11 +21,16 @@ function loadedAudio() {
         $("#most_outer_container").show();
     }
 }
+
+setTimeout(() => {
+        $("#loadingScene").hide();
+        $("#most_outer_container").show();
+    }, 10000); // incase loading fails
     
-var player = document.getElementById('player');
+var preloadPlayer = document.getElementById('preloadPlayer');
 function play(index) {
-    player.src = audioFiles[index];
-    player.play();
+    preloadPlayer.src = audioFiles[index];
+    preloadPlayer.play();
 }
     
     
