@@ -47,6 +47,10 @@
 
   function resultHandler(data) {
      latestResults.mostLikely = getMostLikelyItem(data);
+     scope.latestResults = latestResults;
+     scope.$apply();
+     scope.phoneHandler();
+     scope.$apply();
 
      console.log("Latest Results", latestResults);
   }

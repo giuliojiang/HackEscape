@@ -16,6 +16,9 @@ window.addEventListener('popstate', function () {
   var latestResults = {
      mostLikely: { name: "", prob: -1 } // Empty string means unknown
   };
+  var scope;
+  // var scope = angular.element(document.body).scope().get();
+
 </script>
         <!-- Angular -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
@@ -29,7 +32,7 @@ window.addEventListener('popstate', function () {
  -->
 
     </head>
-    <body ng-app="mainApp" ng-controller="main_controller">
+    <body ng-app="mainApp" ng-controller="main_controller" id="mainApp">
         <div id="loadingScene" style="text-align: center; margin-top: 270px; font-size: 80px;">
             Loading, please wait...<br />
             <span id="loadPerc">0</span>%

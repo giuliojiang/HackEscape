@@ -1,6 +1,7 @@
 var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
 
 mainApp.controller("main_controller", function($scope) {
+    scope = $scope;
     $scope.phoneMsg = '';
     $scope.phoneLoading = false;
     $scope.showPhone = false;
@@ -16,30 +17,34 @@ mainApp.controller("main_controller", function($scope) {
     $scope.showOrHidePhone = function(showBool) {
         $scope.showPhone = showBool;
         $scope.latestResults = jQuery.extend({}, latestResults);
-        latestResults = {
-           mostLikely: { name: "", prob: -1 } // Empty string means unknown
-        };
+
+        $scope.latestResults.mostLikely.name = latestResults.mostLikely.name;
+        $scope.latestResults.mostLikely.prob = latestResults.mostLikely.prob;
+        latestResults.mostLikely.name = "";
+        latestResults.mostLikely.prob = -1;
+
         $scope.phoneMsg = '';
     };
 
 
 
-    // PHone stuff
-    setInterval(function() {
-        $scope.latestResults = jQuery.extend({}, latestResults);
-        latestResults = {
-           mostLikely: { name: "", prob: -1 } // Empty string means unknown
-        };
-        if ($scope.latestResults.mostLikely.prob != -1) {
-            $scope.phoneHandler();
-        }
-        // console.log("PLEASE WORK Latest Results", $scope.latestResults);
+    // // PHone stuff
+    // setInterval(function() {
+    //     $scope.latestResults.mostLikely.name = latestResults.mostLikely.name;
+    //     $scope.latestResults.mostLikely.prob = latestResults.mostLikely.prob;
+    //     latestResults.mostLikely.name = "";
+    //     latestResults.mostLikely.prob = -1;
+
+    //     if ($scope.latestResults.mostLikely.prob != -1) {
+    //         $scope.phoneHandler();
+    //     }
+    //     // console.log("PLEASE WORK Latest Results", $scope.latestResults);
         
-    }, 50);
+    // }, 50);
 
     $scope.phoneHandler = function() {
         console.log("phone handler", $scope.latestResults)
-        if ($scope.latestResults.mostLikely.prob < 0.05 || $scope.latestResults.mostLikely.name == "" || !$scope.latestResults.mostLikely.name) {
+        if ($scope.latestResults.mostLikely.prob < 0.3 || $scope.latestResults.mostLikely.name == "" || !$scope.latestResults.mostLikely.name) {
             $scope.phoneMsg = "I'm not sure what that item is, please scan it again."
             return $scope.$apply();
         }
