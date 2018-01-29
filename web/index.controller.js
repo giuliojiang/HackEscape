@@ -7,6 +7,11 @@ mainApp.controller("main_controller", function($scope) {
     $scope.togglePhone = function() {
         $scope.showOrHidePhone(!$scope.showPhone);
     };
+    
+    $scope.openNewTab = function(url) {
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
 
     $scope.showOrHidePhone = function(showBool) {
         $scope.showPhone = showBool;
