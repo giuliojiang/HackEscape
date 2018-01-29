@@ -140,7 +140,7 @@ mainApp.controller("main_controller", function($scope) {
             $scope.playSound("audio/walking.wav");
             // $scope.playMusic("audio/outside_night.ogg");
         } else if (new_level == "ending") {
-            $scope.playMusic("audio/ending.wav");
+            $scope.playMusic("audio/ending.mp3");
                     setTimeout(() => jQuery( "#ending_black" ).animate({
                         opacity: 0
                         }, 3000), 200);
