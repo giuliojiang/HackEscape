@@ -142,8 +142,7 @@ mainApp.controller("main_controller", function($scope) {
                 });
             }, 500);
         } else if (new_level == "outside") {
-            $scope.playSound("audio/walking.wav");
-            // $scope.playMusic("audio/outside_night.ogg");
+            $scope.playSound("audio/walking.ogg");
         } else if (new_level == "ending") {
             $scope.playMusic("audio/ending.mp3");
                     setTimeout(() => jQuery( "#ending_black" ).animate({
@@ -420,7 +419,7 @@ mainApp.controller("main_controller", function($scope) {
             $scope.obtainedKey = true;
             $scope.playSound("audio/keyPickUp.wav");
         } else {
-            $scope.playSound("audio/itemFound.wav");
+            $scope.playSound("audio/itemFound.ogg");
         }
         $scope.inventory[item_name] = true;
     };
@@ -474,7 +473,7 @@ mainApp.controller("main_controller", function($scope) {
         $scope.inventory_add_item("Puzzle 3")
         $scope.chest_opened = true;
         $scope.inventory_remove_item("key");
-        $scope.playSound("audio/chestOpen.wav");
+        $scope.playSound("audio/chestOpen.ogg");
     };
 
 
@@ -525,7 +524,7 @@ mainApp.controller("main_controller", function($scope) {
     $scope.doneSlot = [false, false, false, false, false];
 
     $scope.open_qtr_puzzle = function() {     
-        $scope.playSound("audio/wallUpSound.wav");
+        $scope.playSound("audio/wallUpSound.ogg");
         setTimeout(() => jQuery( "#qtr_wall" ).animate({
                         opacity: 1,
                         marginTop: "-700px"
@@ -611,7 +610,7 @@ mainApp.controller("main_controller", function($scope) {
             $scope.lion_status.active = true;
             $scope.inventory_remove_item("book");
             $scope.playSound("audio/book_sliding.ogg");
-            setTimeout(() => $scope.playSound("audio/doorUnlock.wav"), 2000);
+            setTimeout(() => $scope.playSound("audio/doorUnlock.ogg"), 2000);
 
 
             setTimeout(() => jQuery( "#lion_book" ).animate({
@@ -658,12 +657,12 @@ mainApp.controller("main_controller", function($scope) {
         }
 
         if ($scope.completed_clock()) {
-            $scope.playSound("audio/clockTick.wav");
-            setTimeout(() => { $scope.playSound("audio/chime6.wav"); }, 2000);
+            $scope.playSound("audio/clockTick.ogg");
+            setTimeout(() => { $scope.playSound("audio/chime6.ogg"); }, 2000);
             setTimeout(() => { $scope.current_level_set("qtr"); $scope.$apply() }, 4000);
             
             $scope.clock.zoomed = false;
-            $scope.playSound("audio/doorOpen.wav");
+            $scope.playSound("audio/doorOpen.ogg");
 
             setTimeout(() => $( "#cd_door" ).animate({
                     opacity: 1,
