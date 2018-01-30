@@ -1,6 +1,8 @@
 # HackEscape
 
-Built at IC Hack 18
+Built at IC Hack 18 - https://ichack.org/
+
+A game created by 5 students (2 artists, 3 programmers and updated for maintenance; see https://devpost.com/software/queen-s-tower for more information) as a parting gift to Imperial College London.
 
 # Live
 
@@ -27,6 +29,3 @@ Eye motion tracking.
 Microsoft Custom Machine Learning Image Recognition API.
 
 AngularJS, JQuery, HTML, CSS and JS.
-
-# DevPost
-https://devpost.com/software/queen-s-tower
