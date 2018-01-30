@@ -12,6 +12,10 @@ or
 
 https://hackescape.westeurope.cloudapp.azure.com/
 
+or
+
+https://queenstreasure.jstudios.ovh/
+
 # Known issues
 
 Only works on Chrome and Chromium.
