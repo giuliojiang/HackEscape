@@ -36,11 +36,7 @@ window.addEventListener('popstate', function () {
 
     </head>
     <body ng-app="mainApp" ng-controller="main_controller" id="mainApp">
-        <div id="loadingScene" style="text-align: center; margin-top: 270px; font-size: 80px;">
-            Loading, please wait...<br />
-            <span id="loadPerc">0</span>%
-        </div>
-        <div id="most_outer_container" style="display: none;">
+        <div id="most_outer_container">
             <div ng-include="'phone.html'" ng-show="is_game_scene() && current_level != 'ending'"></div>
 
             <div id='black'></div>
@@ -61,8 +57,6 @@ window.addEventListener('popstate', function () {
             <div ng-include="'narr.html'"></div>
             <div ng-include="'inventory.html'" ng-show="inventory_is_visible()"></div>
         </div>
-
-        <audio id="preloadPlayer"></audio><script src="preload_audio.js"></script>
 
     </body>
 </html>
