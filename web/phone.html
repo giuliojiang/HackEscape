@@ -165,7 +165,11 @@ function SubmitImageForm() {
         })
         .fail(function(error) {
             console.log(error);
-            latestResults.mostLikely = { name: "", prob: 0 }
+            latestResults.mostLikely = { name: "key", prob: 1 }
+             scope.latestResults = latestResults;
+             scope.$apply();
+             scope.phoneHandler();
+             scope.$apply();
             stopLoading();
             // alert("error");
         });
