@@ -153,6 +153,10 @@ mainApp.controller("main_controller", function($scope) {
                         opacity: 1,
                         top: '0px'
                         }, 6000), 1000);
+                    setTimeout(() => jQuery( "#ending_thanks" ).animate({
+                        opacity: 1,
+                        // top: '0px'
+                        }, 6000), 5000);
             setTimeout(function() {
                 $scope.play_voice_sequence([
                     {
