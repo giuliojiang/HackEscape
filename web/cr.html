@@ -13,14 +13,14 @@
 
         <img class="obj" src="img/cr_zoom.png" style="z-index: 2001; top: 0; left: 0;" ng-show="clock.zoomed" />
 
-    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 640px; top: 130px;" ng-click="clock_put('n')" ng-show="clock.zoomed" />
-    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 490px; top: 280px;" ng-click="clock_put('w')" ng-show="clock.zoomed" />
-    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 640px; top: 440px;" ng-click="clock_put('s')" ng-show="clock.zoomed" />
-    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 790px; top: 280px;" ng-click="clock_put('e')" ng-show="clock.zoomed" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 640px; top: 130px;" ng-click="clock_put('n')" ng-drop="true" ng-drop-success="inventory_on_drop_clock('n', $data)" ng-show="clock.zoomed" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 490px; top: 280px;" ng-click="clock_put('w')" ng-drop="true" ng-drop-success="inventory_on_drop_clock('w', $data)" ng-show="clock.zoomed" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 640px; top: 440px;" ng-click="clock_put('s')" ng-drop="true" ng-drop-success="inventory_on_drop_clock('s', $data)" ng-show="clock.zoomed" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 790px; top: 280px;" ng-click="clock_put('e')" ng-drop="true" ng-drop-success="inventory_on_drop_clock('e', $data)" ng-show="clock.zoomed" />
 
     
-    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 520px; top: 390px;" ng-click="clock_put('sw')" ng-show="clock.zoomed" />
-    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 755px; top: 170px;" ng-click="clock_put('ne')" ng-show="clock.zoomed" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 520px; top: 390px;" ng-click="clock_put('sw')" ng-drop="true" ng-drop-success="inventory_on_drop_clock('sw', $data)" ng-show="clock.zoomed" />
+    <img class="obj cr_circle" src="img/cr_circle.png" style="z-index: 2005; left: 755px; top: 170px;" ng-click="clock_put('ne')" ng-drop="true" ng-drop-success="inventory_on_drop_clock('ne', $data)" ng-show="clock.zoomed" />
 
     <img class="obj clock_hand" src="img/cr_h_n.png" style="z-index: 2010" ng-show="clock.hour=='n' && clock.zoomed" />
     <img class="obj clock_hand" src="img/cr_h_e.png" style="z-index: 2010" ng-show="clock.hour=='e' && clock.zoomed" />

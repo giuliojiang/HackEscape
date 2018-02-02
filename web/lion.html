@@ -3,7 +3,7 @@
     <img class="top" src="img/lion_cover.png" />
     <!--TODO - This scene needs as background the outdoors scene at night-->
 
-    <img id="lion_btm_white" class="obj" src="{{imgsrc5}}" ng-hide="lion_status.active" ng-init="imgsrc5='img/lion_btm_blank.png'" ng-mouseover="imgsrc5='img/lion_btm_white.png'" ng-mouseout="imgsrc5='img/lion_btm_blank.png'" style="z-index: 1200" ng-click="lion_click()" />
+    <img id="lion_btm_white" class="obj" src="{{imgsrc5}}" ng-hide="lion_status.active" ng-init="imgsrc5='img/lion_btm_blank.png'" ng-mouseover="imgsrc5='img/lion_btm_white.png'" ng-mouseout="imgsrc5='img/lion_btm_blank.png'" style="z-index: 1200" ng-click="lion_click()" ng-drop="true" ng-drop-success="inventory_on_drop_lion($data)" />
 
 
     <img class="bg" src="img/lion_bg.png" />

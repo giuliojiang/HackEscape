@@ -1,4 +1,4 @@
-var mainApp = angular.module("mainApp", [ '720kb.tooltips' ]);
+var mainApp = angular.module("mainApp", [ '720kb.tooltips', 'ngDraggable']);
 
 mainApp.controller("main_controller", function($scope) {
     scope = $scope;
@@ -394,11 +394,22 @@ mainApp.controller("main_controller", function($scope) {
 
     $scope.inventory_item_click = function(item_name) {
         console.info("Player clicked on inventory item " + item_name);
-        if ($scope.inventory_extra.selected == item_name) {
-            $scope.inventory_extra.selected = null;
-        } else {
-            $scope.inventory_extra.selected = item_name;
-        }
+        $scope.inventory_extra.selected = item_name;
+    };
+
+    $scope.inventory_on_drop_lion = function(drag_data) {
+        $scope.inventory_item_click(drag_data);
+        $scope.lion_click();
+    };
+
+    $scope.inventory_on_drop_clock = function(clock_location, drag_data) {
+        $scope.inventory_item_click(drag_data);
+        $scope.clock_put(clock_location);
+    };
+
+    $scope.inventory_on_drop_qtr = function(drag_data, qtr_number) {
+        $scope.inventory_item_click(drag_data);
+        $scope.qtrClick(qtr_number);
     };
 
     $scope.inventory_get_class = function(item_name) {

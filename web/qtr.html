@@ -3,13 +3,13 @@
     <img class="bg" src="img/qtr_bg.jpg" style="z-index: -970" />
 
     <!-- QTR HOVERS  -->
-    <img id="qtr1" class="obj" src="{{imgsrc11}}" ng-hide="doneSlot[1]" ng-init="imgsrc11='img/qtr_blank.png'" ng-mouseover="imgsrc11='img/qtr_white.png'" ng-mouseout="imgsrc11='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(1)" />
+    <img id="qtr1" class="obj" src="{{imgsrc11}}" ng-hide="doneSlot[1]" ng-init="imgsrc11='img/qtr_blank.png'" ng-mouseover="imgsrc11='img/qtr_white.png'" ng-mouseout="imgsrc11='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(1)" ng-drop="true" ng-drop-success="inventory_on_drop_qtr($data, 1)" />
 
-    <img id="qtr2" class="obj" src="{{imgsrc12}}" ng-hide="doneSlot[2]" ng-init="imgsrc12='img/qtr_blank.png'" ng-mouseover="imgsrc12='img/qtr_white.png'" ng-mouseout="imgsrc12='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(2)" />
+    <img id="qtr2" class="obj" src="{{imgsrc12}}" ng-hide="doneSlot[2]" ng-init="imgsrc12='img/qtr_blank.png'" ng-mouseover="imgsrc12='img/qtr_white.png'" ng-mouseout="imgsrc12='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(2)" ng-drop="true" ng-drop-success="inventory_on_drop_qtr($data, 2)" />
 
-    <img id="qtr3" class="obj" src="{{imgsrc13}}" ng-hide="doneSlot[3]" ng-init="imgsrc13='img/qtr_blank.png'" ng-mouseover="imgsrc13='img/qtr_white.png'" ng-mouseout="imgsrc13='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(3)" />
+    <img id="qtr3" class="obj" src="{{imgsrc13}}" ng-hide="doneSlot[3]" ng-init="imgsrc13='img/qtr_blank.png'" ng-mouseover="imgsrc13='img/qtr_white.png'" ng-mouseout="imgsrc13='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(3)" ng-drop="true" ng-drop-success="inventory_on_drop_qtr($data, 3)" />
 
-    <img id="qtr4" class="obj" src="{{imgsrc14}}" ng-hide="doneSlot[4]" ng-init="imgsrc14='img/qtr_blank.png'" ng-mouseover="imgsrc14='img/qtr_white.png'" ng-mouseout="imgsrc14='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(4)" />
+    <img id="qtr4" class="obj" src="{{imgsrc14}}" ng-hide="doneSlot[4]" ng-init="imgsrc14='img/qtr_blank.png'" ng-mouseover="imgsrc14='img/qtr_white.png'" ng-mouseout="imgsrc14='img/qtr_blank.png'" style="z-index: -969" ng-click="qtrClick(4)" ng-drop="true" ng-drop-success="inventory_on_drop_qtr($data, 4)" />
 
     <!-- QTR COMPLETED SHOWS -->
     <img class="bg" src="img/qtr_1.png" ng-show="doneSlot[1]" style="z-index: -969; pointer-events: none" />
