@@ -10,10 +10,6 @@ https://queenstreasure.co.uk/
 
 or
 
-https://hackescape.westeurope.cloudapp.azure.com/
-
-or
-
 https://queenstreasure.jstudios.ovh/
 
 # Known issues
