@@ -6,7 +6,7 @@ A game created by 5 students (2 artists, 3 programmers and updated for maintenan
 
 # Live
 
-[Click here to play the game!](http://queenstreasure.jstudios.ovh/web/)
+[Click here to play the game!](https://queenstreasure.jstudios.ovh/web/)
 
 # Known issues
 
