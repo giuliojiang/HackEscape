@@ -6,11 +6,7 @@ A game created by 5 students (2 artists, 3 programmers and updated for maintenan
 
 # Live
 
-https://queenstreasure.co.uk/
-
-or
-
-https://queenstreasure.jstudios.ovh/
+[Click here to play the game!](http://queenstreasure.jstudios.ovh/web/)
 
 # Known issues
 
