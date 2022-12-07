@@ -18,6 +18,6 @@
   "homepage": "https://github.com/giuliojiang/HackEscape#readme",
   "dependencies": {
     "angular-tooltips": "^1.2.2",
-    "express": "^4.16.2"
+    "express": "^4.17.3"
   }
 }
